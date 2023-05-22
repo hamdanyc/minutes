@@ -3,7 +3,7 @@
 BEGIN {
     # Set the OpenAI API endpoint and access key
     endpoint = "https://api.openai.com/v1/engines/davinci-codex/completions"
-    access_key = "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"
+    access_key = OPENAI_API_KEY
 
     # Read the article content from the file
     file_path = "jupiter.txt"
