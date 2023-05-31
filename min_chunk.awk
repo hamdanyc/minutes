@@ -35,16 +35,23 @@ function split_into_chunks(text) {
     # Append the current line to the current chunk
     chunks = chunks lines[i] "\n"
   }
-  # print "==>",chunks
+
   # Summarize any remaining chunk
   if (word_count > 0) {
     write_chunk(chunks)
   }
 }
 
-function write_chunk(text) {
-  content = text
+function write_chunk(chunks) {
+  content = chunks
+  n = 0
   # Output to a file
-  content_filename = sprintf("chunk/content%d.txt", NR)
-  print content  > content_filename
+  if (!a[$NR]++) {
+    content_filename = sprintf("chunk/content%d.txt", NR)
+    print content  > content_filename
+    }
+  else { # file > 750 words, i line
+    content_filename = sprintf("chunk/content%d%d.txt", NR, i)
+    print content  > content_filename
+    }
 }
