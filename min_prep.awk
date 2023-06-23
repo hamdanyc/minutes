@@ -9,7 +9,7 @@
 BEGIN {
  dept[1] = "front office"; dept[2] = "hr"; dept[3] = "f&b"; dept[4] = "kitchen"; dept[5] = "steward"
  dept[6] = "security"; dept[7] = "purchasing"; dept[8] = "maintenance"; dept[9] = "asset"; dept[10] = "\bit\b"
- dept[11] = "housekeeping"; dept[12] = "sales"; dept[13] = "finance"; dept[14] = "gm"; dept[15] = "pengurus"
+ dept[11] = "housekeeping"; dept[12] = "sales"; dept[13] = "finance"; dept[14] = "operation"; dept[15] = "pengurus"
  i = 0
  m = 0
  IGNORECASE = 1
@@ -26,8 +26,8 @@ BEGIN {
        }
        #if ($0 ~ /Cef/) print "\nDept#",toupper(dept[4])
        if ($0 ~ /[Aa]ssalam|selamat|good/) {
-	  m++
-	  print "\nDept#",toupper(dept[m])
+	    m++
+	    print "\nDept#",toupper(dept[m])
        }
    }
    if ($0 != "") print $0

@@ -7,7 +7,7 @@ BEGIN {
   max_words_per_chunk = 750
 }
 
-/Dept#/ {
+/Dept#|item#/ {
   # Split the group into chunks of max_words_per_chunk words each
   split_into_chunks($0)
 }
