@@ -23,10 +23,12 @@ function split_into_chunks(text) {
     # Split the line into words and count them
     num_words = split(lines[i], words, " ")
     word_count += num_words
+    title = lines[1]
 
     # If the current chunk has reached the maximum word count,
     # write to a file and start a new chunk
     if (word_count > max_words_per_chunk) {
+      chunks = title "\n" chunks
       write_chunk(chunks)
       word_count = num_words
       chunk_count++

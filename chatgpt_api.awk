@@ -5,27 +5,16 @@ BEGIN {
     endpoint = "https://api.openai.com/v1/engines/davinci-codex/completions"
     access_key = OPENAI_API_KEY
 
-    # Read the article content from the file
-    file_path = "jupiter.txt"
-
-    # Read the contents of the file into the variable 'file'
-    article = ""
-    while ((getline line < file_path) > 0) {
-        article = article line "\n"
-    }
-
-    # Close the file
-    close(file_path)
-
-    # Print the contents of the file
-    print "File contents:"
-    print article
+    # Set the text content
+    text = "Explain to 5 year old about black hole"
 
     # Set the request payload
-    payload = "{\"prompt\":\"Summarize the following article: " article "\",\"max_tokens\":50}"
-    # payload = "{\"model\": \"text-davinci-003\",\"prompt\":\"Summarize the following article: " article "\",\"max_tokens\":50""\"}"
+    payload = "{\"prompt\": " text "\",\"max_tokens\":50}"
 
     # Make the API call and get the response
+    command = "curl -s -X POST -H \"Content-Type: application/json\" -H \"Authorization: Bearer " access_key "\" -d '" payload "' " endpoint
+    command | getline response
+    close(command)
 
     # Parse the response and extract the summary
     split(response, response_arr, "\"text\":")
@@ -34,15 +23,5 @@ BEGIN {
 
     # Display the summary
     print "Summary:"
-    print summary
+    print response
 }
-
-#curl https://api.openai.com/v1/completions \
-#  -H "Content-Type: application/json" \
-#  -H "Authorization: Bearer $OPENAI_API_KEY" \
-#  -d '{
-#    "model": "text-davinci-003",
-#    "prompt": "Say this is a test",
-#    "max_tokens": 7,
-#    "temperature": 0
-#  }'
