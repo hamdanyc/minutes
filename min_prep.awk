@@ -27,6 +27,20 @@ BEGIN {
    print "Deluxe: 3"
    print "VIP: 1"
    print "Homestay Perwira: 0"
+   print "Dept#",toupper(dept[1])
+   print "Syif pagi ..."
+   print "Syif petang ..."
+   print "Syif malam ..."
+   print "daily room report"
+   print "Living-in: 280"
+   print "Standard: 279"
+   print "Deluxe: 35"
+   print "VIP: 6"
+   print "Transit: 7"
+   print "Standard: 3"
+   print "Deluxe: 3"
+   print "VIP: 1"
+   print "Homestay Perwira: 0"
 }
 {
   rep_with()
