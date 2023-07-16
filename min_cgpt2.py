@@ -12,7 +12,7 @@ if openai.api_key is None:
 
 # Define the initial prompt to initiate the conversation
 init_prompt = """
-You are a secretary in a departmental meeting. Your objective is to write concise, clear and brief meeting notes, highlighting important discussions, facts and decisions while avoiding trivial issues. Present facts and figure in a table. Please take the minutes.
+You are a secretary in a departmental meeting. Your task is to write a concise, simple and clear meeting notes, highlighting important discussions, facts and decisions while avoiding trivial issues. Present facts and figure in a table where possible. Put issues that are similar in context together.
 """
 # Generate the conversation with ChatGPT
 conversation = [init_prompt]
@@ -36,12 +36,12 @@ for filename in file_list:
         text = ' '.join(file.read().splitlines())
 
         # Request summarization from ChatGPT
-        prompt = [f"Write minutes from the text. List main points with title. At least 2 paragraph each: {text}"]
+        prompt = [f"List main points with title from the text. Not more than 2 paragraph for each point: {text}"]
         response = openai.Completion.create(
             engine='text-davinci-003',
             prompt='\n'.join(conversation + prompt),
             max_tokens=555,
-            temperature=0.7
+            temperature=0
         )
         rs = response.choices[0].text.strip()
         print(rs)

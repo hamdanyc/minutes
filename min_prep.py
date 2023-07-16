@@ -16,9 +16,17 @@ def rep_with(line):
     line = re.sub(r'takbisaan', 'Tapisan', line)
     line = re.sub(r'F[NM][NB]', 'F&B', line)
     line = re.sub(r'RBI', 'RV', line)
-    line = re.sub(r'pulakai', 'pakai', line)
+    line = re.sub(r'[A-Z]VIP', 'VVIP', line)
+    line = re.sub(r'p.kai', 'pakai', line)
+    line = re.sub(r'Toast Class', 'Toast Glass', line)
+    line = re.sub(r'[Kk]ursi', 'kerusi', line)
     line = re.sub(r'Siapak', 'setiap', line)
     line = re.sub(r'suat', 'surat', line)
+    line = re.sub(r'Cik', 'En\.', line)
+    line = re.sub(r'Rahim', 'Ibrahim', line)
+    line = re.sub(r'Ingwars|imbos.', 'invois', line)
+    line = re.sub(r'Penhouse', 'Penthouse', line)
+    line = re.sub(r'dina', 'dinner', line)
     line = re.sub(r'baby', 'bulan', line)
     line = re.sub(r'pedera', 'saudara', line)
     line = re.sub(r'azap', 'nazak', line)
@@ -120,16 +128,16 @@ pat_sect = {
 }
 
 pat_dept = {
-    r'fo': "front office",
-    r'hr': "hr",
-    r'f&b': "f&b",
+    r'^fo': "front office",
+    r'^hr': "hr",
+    r'^f&b': "f&b",
     r'kitchen': "kitchen",
-    r'steward': "steward",
+    r'steward|cef|chef': "steward",
     r'security': "security",
     r'purchasing': "purchasing",
     r'maintenance': "maintenance",
     r'asset': "asset",
-    r'\bit\b': "bit",
+    r'^it\s': "it",
     r'housekeeping': "housekeeping",
     r'sales': "sales",
     r'finance': "finance",
