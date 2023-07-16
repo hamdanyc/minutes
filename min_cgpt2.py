@@ -1,5 +1,3 @@
-
-
 import os
 import sys
 import openai
@@ -11,6 +9,13 @@ openai.api_key = os.environ.get('OPENAI_API_KEY')
 if openai.api_key is None:
     print("OpenAI API key not found. Make sure to set the OPENAI_API_KEY environment variable.")
     sys.exit(1)
+
+# Define the initial prompt to initiate the conversation
+init_prompt = """
+You are a secretary in a departmental meeting. Your objective is to write concise, clear and brief meeting notes, highlighting important discussions, facts and decisions while avoiding trivial issues. Present facts and figure in a table. Please take the minutes.
+"""
+# Generate the conversation with ChatGPT
+conversation = [init_prompt]
 
 # Set the directory containing the text files
 directory = '/home/abi/minit_mesyuarat_wp/out/chunk'
@@ -31,24 +36,24 @@ for filename in file_list:
         text = ' '.join(file.read().splitlines())
 
         # Request summarization from ChatGPT
-        prompt = f"List 3 to 5 main points with a brief description from the text.: {text}"
+        prompt = [f"Write minutes from the text. List main points with title. At least 2 paragraph each: {text}"]
         response = openai.Completion.create(
             engine='text-davinci-003',
-            prompt=prompt,
-            max_tokens=355,
-            temperature=0
+            prompt='\n'.join(conversation + prompt),
+            max_tokens=555,
+            temperature=0.7
         )
         rs = response.choices[0].text.strip()
         print(rs)
-
-        print("Ringkasan:")
+        print("")
+        print("Ringkasan Minit:")
 
         # Translate the response to Malay
-        prompt = f"Suggest title for each points. Translate to Malay.: {rs}"
+        prompt = f"Translate to Malay.: {rs}"
         response = openai.Completion.create(
             engine='text-davinci-003',
             prompt=prompt,
-            max_tokens=355,
+            max_tokens=555,
             temperature=0
         )
         my = response.choices[0].text.strip()
