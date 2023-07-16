@@ -6,7 +6,6 @@ import openai
 
 # Get the OpenAI API key from the environment
 openai.api_key = os.environ.get('OPENAI_API_KEY')
-# openai.api_key = "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"
 
 # Check if the API key is set
 if openai.api_key is None:
