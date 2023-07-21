@@ -148,14 +148,13 @@ def print_headers(line, pat_dept, seen):
             seen.add(department)
             break
 
-def remove_duplicates(line):
-    lines_seen = set()  # Set to store unique lines
+def remove_duplicates(line, seen):
 
-    if line not in lines_seen:
-       cleaned_line = line
-       lines_seen.add(line)
+    if line not in seen:
+       cleaned = line
+       seen.add(line)
 
-    return cleaned_line
+    return cleaned
 
 # Main code
 if len(sys.argv) < 2:
@@ -191,6 +190,7 @@ pat_dept = {
 
 seen_departments = set()
 seen_sections = set()
+seen_line = set()
 
 try:
     with open(input_file, 'r') as file:
@@ -203,15 +203,14 @@ print_hd()
 
 for line in lines:
     line = line.strip()
-    line = remove_timestamp(line)
 
-    # Remove duplicate lines
-    line = remove_duplicates(line)
+    # Remove time stamp
+    line = remove_timestamp(line)
 
     # Perform spelling correction
     line = correct_spelling(line)
 
-    # Apply replacements to the line
+    # Replace unknown word to the line
     line = rep_with(line)
 
     # Find and print setion headers based on pat_sect
@@ -221,5 +220,6 @@ for line in lines:
     print_headers(line, pat_dept, seen_departments)
 
     # Print the cleaned line if it's not empty
-    if line != "":
-        print(line)
+    if line != "" and line not in seen_line:
+       print(line)
+       seen_line.add(line)
