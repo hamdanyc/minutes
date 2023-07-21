@@ -24,10 +24,10 @@ def read_database(host, database, user, password, table, field):
 
 if __name__ == "__main__":
     # Set the connection parameters
-    host = "abi-linode.name.my"
+    host = ""
     database = "news"
     user = "abi"
-    password = "80907299"
+    password = ""
     table = "text"
     field = "article"
 
