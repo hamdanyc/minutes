@@ -22,8 +22,9 @@ def get_word_frequency(tokens):
 
 def write_json(word_counts, filename):
     with open(filename, "w") as f:
-        json.dump(word_counts, f)
+        json.dump(word_counts, f, indent=2)
 
+# input: head -7000 news.txt > news.tmp
 if __name__ == "__main__":
     input_file = "/home/abi/minit_mesyuarat_wp/out/news.tmp"
     with open(input_file, "r") as f:
@@ -32,6 +33,7 @@ if __name__ == "__main__":
     tokens = tokenize_text(filtered_text)
     word_counts = get_word_frequency(tokens)
 
+#  sed -i 's/,/,\n/g' my.json
     with tqdm.tqdm(total=len(tokens),leave=True) as pbar:
         for token in tokens:
             pbar.update()
