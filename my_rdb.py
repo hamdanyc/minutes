@@ -14,7 +14,7 @@ def read_database(host, database, user, password, table, field):
 
     # Get all the rows of the specified field from the table
     cursor = db_connection.cursor()
-    cursor.execute(f"SELECT {field} FROM {table} WHERE src IN ('nst', 'thestar', 'theedge', 'thesundaily','malaysianow','newsarawaktribune', 'borneopost', 'fmt', 'agendadaily', 'airtimes','antarapos','astroawani','amanahdaily','beritaharian','bernama', 'harakah', 'hmetro', 'hmetro', 'kosmo', 'malaysiadateline', 'sinarharian','sarawakvoice', 'umnoonline', 'utusan') LIMIT 70000")
+    cursor.execute(f"SELECT {field} FROM {table} WHERE src IN ('nst', 'thestar', 'theedge', 'thesundaily','malaysianow','newsarawaktribune', 'borneopost', 'fmt', 'agendadaily', 'airtimes','antarapos','astroawani','amanahdaily','beritaharian','bernama', 'harakah', 'hmetro', 'hmetro', 'kosmo', 'malaysiadateline', 'sinarharian','sarawakvoice', 'umnoonline', 'utusan') LIMIT 700")
     results = cursor.fetchall()
 
     # Use tqdm to display a progress bar
@@ -25,7 +25,7 @@ def read_database(host, database, user, password, table, field):
     return results
 
     # Write the results to a text file
-    with open("/home/abi/minit_mesyuarat_wp/out/news.txt", "w") as f:
+    with open("/home/abi/minutes/out/news.txt", "w") as f:
       for row in results:
          if row[0] is not None:
              f.write(row[0] + "\n")

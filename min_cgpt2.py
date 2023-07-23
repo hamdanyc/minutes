@@ -1,6 +1,7 @@
 import os
 import sys
 import openai
+import time
 
 # Get the OpenAI API key from the environment
 openai.api_key = os.environ.get('OPENAI_API_KEY')
@@ -12,13 +13,13 @@ if openai.api_key is None:
 
 # Define the initial prompt to initiate the conversation
 init_prompt = """
-You are a secretary in a departmental meeting. Your task is to write a concise, simple and clear meeting notes, highlighting important discussions, facts and decisions while avoiding trivial issues. Present facts and figure in a table where possible. Put issues that are similar in context together.
+You are a secretary to a departmental meeting. Your task is to write a concise meeting notes that highlighting important discussions, facts and decision. Tabulate facts and figure for references. Put issues that are similar in context together.
 """
 # Generate the conversation with ChatGPT
 conversation = [init_prompt]
 
 # Set the directory containing the text files
-directory = '/home/abi/minit_mesyuarat_wp/out/chunk'
+directory = '/home/abi/minutes/out/chunk'
 
 # Set the directory containing the text files
 file_list = os.listdir(directory)
@@ -36,7 +37,7 @@ for filename in file_list:
         text = ' '.join(file.read().splitlines())
 
         # Request summarization from ChatGPT
-        prompt = [f"List main points with title from the text. Not more than 2 paragraph for each point: {text}"]
+        prompt = [f"List the main points with title where each point not more than 2 paragraphs ie. tldr. In next paragraph, translate to Malay: {text}"]
         response = openai.Completion.create(
             engine='text-davinci-003',
             prompt='\n'.join(conversation + prompt),
@@ -45,19 +46,6 @@ for filename in file_list:
         )
         rs = response.choices[0].text.strip()
         print(rs)
-        print("")
-        print("Ringkasan Minit:")
-
-        # Translate the response to Malay
-        prompt = f"Translate to Malay.: {rs}"
-        response = openai.Completion.create(
-            engine='text-davinci-003',
-            prompt=prompt,
-            max_tokens=555,
-            temperature=0
-        )
-        my = response.choices[0].text.strip()
-        print(my)
 
     print("")
-
+    time.sleep(1)

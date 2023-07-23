@@ -1,53 +1,20 @@
-# min_prep.py
-# usage python3 min_prep.py  input.txt
-
 import sys
 import re
 from spellchecker import SpellChecker
-
-# turn off loading a built language dictionary, case sensitive on (if desired)
-spell = SpellChecker(language=None, case_sensitive=False, distance=1)
-
-# if you have a dictionary...
-spell.word_frequency.load_dictionary('/home/abi/minutes/my.gz')
-
-def correct_spelling(input_text):
-    lines = input_text.split('\n')
-    corrected_lines = []
-
-    for line in lines:
-        words = line.split()
-        corrected_words = []
-
-        for word in words:
-           corrected_word = spell.correction(word)
-           if corrected_word is not None:
-              corrected_words.append(corrected_word)
-           else:
-              corrected_words.append(word)
-
-        corrected_line = ' '.join(corrected_words)
-        corrected_lines.append(corrected_line)
-
-    corrected_text = '\n'.join(corrected_lines)
-    return corrected_text
 
 # Function to remove the timestamp from a line
 def remove_timestamp(line):
     return re.sub(r'^[0-9]{2}:[0-9]{2}.[0-9]{3} --> [0-9]{2}:[0-9]{2}.[0-9]{3}|^[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3} --> [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}', '', line)
 
 # Function to apply replacements to a line
-def rep_with(line,flag=re.IGNORECASE):
-    line = str(line).lower()
+def rep_with(line, flag=re.IGNORECASE):
     line = re.sub(r'((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)\b', r'\g<0>', line)
+    line = re.sub(r'^H[ou]\w+ing|\w+keeping', 'Housekeeping', line)
+    line = re.sub(r'^[BPF](ina)\w+|[bpf](ina)\w+', 'Finance', line)
     line = re.sub(r'takbisaan', 'Tapisan', line)
     line = re.sub(r'F[NM][NB]|[Pp]embeli\s', 'F&B ', line)
     line = re.sub(r'RBI', 'RV', line)
-    line = re.sub(r'4 hour|4 hr', 'for hour', line)
     line = re.sub(r'EJ Edward', 'discussion', line)
-    line = re.sub(r'syibetang', 'syif petang', line)
-    line = re.sub(r'syipagi', 'syif pagi', line)
-	line = re.sub(r'syimalang', 'syif malam', line)
     line = re.sub(r'[A-Z]VIP', 'VVIP', line)
     line = re.sub(r'[Ll]ory', 'lori', line)
     line = re.sub(r'[Tt]oast [Cc]lass', 'toast glass', line)
@@ -55,10 +22,6 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Siapak', 'setiap', line)
     line = re.sub(r'kepas', 'kipas', line)
     line = re.sub(r'suat', 'surat', line)
-    line = re.sub(r'soh', 'so', line)
-    line = re.sub(r'tua', 'tu', line)
-    line = re.sub(r'torque clutch', 'torch light', line)
-    line = re.sub(r'Miss Nine', 'mess-night', line)
     line = re.sub(r'kandidat', 'calon', line)
     line = re.sub(r'bunyi bicara', 'budi bicara', line)
     line = re.sub(r'arlari', 'almari', line)
@@ -71,14 +34,12 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Penhouse', 'Penthouse', line)
     line = re.sub(r'dina', 'dinner', line)
     line = re.sub(r'baby', 'bulan', line)
-    line = re.sub(r'generaza', 'kol Razak', line)
     line = re.sub(r'pedera', 'saudara', line)
     line = re.sub(r'azap', 'nazak', line)
-    line = re.sub(r'anak perempuan', 'tuan-tuan dan puan-puan', line)
     line = re.sub(r'permadangan', 'pemasangan', line)
     line = re.sub(r'kemah', 'khemah', line)
     line = re.sub(r'[A-Z][A-Z]C\b', 'PMC', line)
-    line = re.sub(r'bisyarat|misha', 'Mesyuarat', line)
+    line = re.sub(r'bisyarat', 'Mesyuarat', line)
     line = re.sub(r'lenscaping', 'landscaping', line)
     line = re.sub(r'Aisyah', 'HR', line)
     line = re.sub(r'tamak', 'semak', line)
@@ -87,8 +48,7 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Papa', 'apa', line)
     line = re.sub(r'hargana', 'harganya', line)
     line = re.sub(r'kawan', 'mereka', line)
-    line = re.sub(r'^ok, ', '^ok', line)
-    line = re.sub(r'kata,\s', 'kata', line)
+    line = re.sub(r' ,', ',', line)
     line = re.sub(r'telefon kecil', 'telefon kitchen', line)
     line = re.sub(r'kejawatan,', 'perjawatan', line)
     line = re.sub(r'^[Aa]\w+[ae]t', 'Asset', line)
@@ -123,27 +83,25 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'pending','tertangguh', line)
     line = re.sub(r'pendari','Bendahari', line)
     line = re.sub(r'Sunday Pyramid','Sunway Pyramid', line)
-    line = re.sub(r'\?','', line)
+
     return line
 
-# Function to find and print headers based on a pattern
+# Function to perform spell-checking
+def spell_check(line):
+    spell = SpellChecker()
+    words = line.split()
+    corrected_words = []
 
-def print_hd():
-   print("Dept# FRONT OFFICE")
-   print("Syif pagi ...")
-   print("Syif petang ...")
-   print("Syif malam ...")
-   print("daily room report")
-   print("Living-in: 320")
-   print("Standard: 279")
-   print("Deluxe: 35")
-   print("VIP: 6")
-   print("Transit: 7")
-   print("Standard: 3")
-   print("Deluxe: 3")
-   print("VIP: 1")
-   print("Homestay Perwira: 0")
-   print("")
+    for word in words:
+        if word not in words:
+            corrected_word = spell.correction(word)
+            if corrected_word is not None:
+                corrected_words.append(corrected_word)
+        else:
+            corrected_words.append(word)
+
+    corrected_line = ' '.join(corrected_words)
+    return corrected_line
 
 def print_section(line, pat_sect, seen):
     for pattern, section in pat_sect.items():
@@ -159,15 +117,6 @@ def print_headers(line, pat_dept, seen):
             seen.add(department)
             break
 
-# Remove duplicate (not run)
-def remove_duplicates(line, seen):
-
-    if line not in seen:
-       cleaned = line
-       seen.add(line)
-
-    return cleaned
-
 # Main code
 if len(sys.argv) < 2:
     print("Please provide the input file as a command-line argument.")
@@ -175,7 +124,6 @@ if len(sys.argv) < 2:
 
 input_file = sys.argv[1]
 
-# Determine section by item
 pat_sect = {
     r'item-1': "Pendahuluan Pengerusi",
     r'item-2': "Perkara-Perkara Berbangkit",
@@ -183,7 +131,6 @@ pat_sect = {
     r'item-4': "Rumusan dan Penutup"
 }
 
-# Determine section for department
 pat_dept = {
     r'^fo\b|deluxe room|\b1.[1-9]\s': "front office",
     r'^hr\b|interview|temuduga|2.[1-9]\s': "hr",
@@ -204,7 +151,7 @@ pat_dept = {
 
 seen_departments = set()
 seen_sections = set()
-seen_line = set()
+seen_lines = set()  # To store unique lines
 
 try:
     with open(input_file, 'r') as file:
@@ -213,28 +160,20 @@ except FileNotFoundError:
     print("File not found:", input_file)
     sys.exit(1)
 
-print_hd()
-
+# Print headers and unique lines
 for line in lines:
     line = line.strip()
-
-    # Remove time stamp
     line = remove_timestamp(line)
-
-    # Perform spelling correction
-    line = correct_spelling(line)
-
-    # Replace unknown word to the line
     line = rep_with(line)
+    line = spell_check(line)
 
-    # Find and print setion headers based on pat_sect
+    # Find and print section headers based on pat_sect
     print_headers(line, pat_sect, seen_sections)
 
     # Find and print headers based on pat_dept
     print_headers(line, pat_dept, seen_departments)
 
-    # Print the cleaned line if it's not empty
-    if line != "" and line not in seen_line:
-       print(line)
-       seen_line.add(line)
-	   
+    # Add the line to seen_lines set only if it's not empty
+    if line != "":
+    	print(line)
+
