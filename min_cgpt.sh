@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file_list=$(ls /home/abi/Documents/minit_mesyuarat_wp/min_out/chunk/*.txt)
+file_list=$(ls /home/abi/minutes/out/chunk/*.txt)
 
 for files in $file_list
 do

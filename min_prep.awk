@@ -4,7 +4,7 @@
 # mark dept header from dept list on match dept::keyword
 # mark ref to para ie. para 2.2.1
 
-@include "/home/abi/Documents/minit_mesyuarat_wp/code/min_lib.awk"
+@include "/home/abi/minutes/min_lib.awk"
 # "fo hr fb kitchen steward security purchase maint aset it hk sales finance gm control"
 BEGIN {
    dept[1] = "front office"; dept[2] = "hr"; dept[3] = "f&b"; dept[4] = "kitchen"; dept[5] = "steward"

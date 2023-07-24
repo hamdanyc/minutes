@@ -47,7 +47,7 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'EJ Edward', 'discussion', line)
     line = re.sub(r'syibetang', 'syif petang', line)
     line = re.sub(r'syipagi', 'syif pagi', line)
-	line = re.sub(r'syimalang', 'syif malam', line)
+    line = re.sub(r'syimalang', 'syif malam', line)
     line = re.sub(r'[A-Z]VIP', 'VVIP', line)
     line = re.sub(r'[Ll]ory', 'lori', line)
     line = re.sub(r'[Tt]oast [Cc]lass', 'toast glass', line)
@@ -235,6 +235,7 @@ for line in lines:
 
     # Print the cleaned line if it's not empty
     if line != "" and line not in seen_line:
-       print(line)
-       seen_line.add(line)
-	   
+       with open("/home/abi/minutes/out/out.txt", "w") as f:
+           f.write(line)
+           seen_line.add(line)
+
