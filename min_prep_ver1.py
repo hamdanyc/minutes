@@ -157,16 +157,6 @@ def pr_dept(line, pat_dept, seen, outfile):
             seen.add(department)
             break
 
-# Remove duplicate (not run)
-def remove_duplicates(line, seen):
-
-    if line not in seen:
-       cleaned = line
-       seen.add(line)
-
-    return cleaned
-
-
 # Main code
 if len(sys.argv) < 2:
     outfile.write("Please provide the input file as a command-line argument.")
@@ -207,7 +197,7 @@ seen_line = set()
 
 try:
     with open(input_file, 'r') as file:
-        lines = file.readlines()
+y        lines = file.readlines()
 except FileNotFoundError:
     outfile.write("File not found:", input_file)
     sys.exit(1)
