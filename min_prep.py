@@ -1,4 +1,4 @@
-# min_prep.py
+# min_prep.py (edited)
 # usage python3 min_prep.py  input.txt
 
 import sys
