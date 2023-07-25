@@ -1,3 +1,6 @@
+# min_shred.py 
+# input: out/out.txt output: shred/
+
 import os
 import re
 
