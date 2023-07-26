@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 # min_shred.py 
 # input: out/out.txt output: shred/
 
->>>>>>> a23fe19d5f8932229be916e239d756acd9353423
 import os
 import re
 

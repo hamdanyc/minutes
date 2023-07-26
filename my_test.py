@@ -4,11 +4,7 @@ from spellchecker import SpellChecker
 # check class; setup what type of information to present back, etc.
 spell = SpellChecker(language=None, case_sensitive=False)
 spell.word_frequency.load_dictionary('/home/abi/minutes/my.gz')
-<<<<<<< HEAD
-# spell.word_frequency.load_text_file('/home/abi/minutes/my_addterm.txt')
-=======
-spell.word_frequency.load_text_file('/home/abi/minutes/my_addterm.txt')
->>>>>>> a23fe19d5f8932229be916e239d756acd9353423
+
 print("To exit, hit return without input!")
 
 while True:

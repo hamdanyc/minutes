@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-# min_prep.py
-=======
 # min_prep.py (edited)
->>>>>>> a23fe19d5f8932229be916e239d756acd9353423
+
 # usage python3 min_prep.py  input.txt
 
 import sys
