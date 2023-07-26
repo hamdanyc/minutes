@@ -52,6 +52,7 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Siapak', 'setiap', line)
     line = re.sub(r'kepas', 'kipas', line)
     line = re.sub(r'suat', 'surat', line)
+    line = re.sub(r'soh|soy', 'so', line)
     line = re.sub(r'soh', 'so', line)
     line = re.sub(r'tua', 'tu', line)
     line = re.sub(r'torque clutch', 'torch light', line)
@@ -84,6 +85,7 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Papa', 'apa', line)
     line = re.sub(r'hargana', 'harganya', line)
     line = re.sub(r'kawan', 'mereka', line)
+    line = re.sub(r'ok,', 'ok', line)
     line = re.sub(r'^ok, ', '^ok', line)
     line = re.sub(r'kata,\s', 'kata', line)
     line = re.sub(r'telefon kecil', 'telefon kitchen', line)
@@ -126,7 +128,7 @@ def rep_with(line,flag=re.IGNORECASE):
 # Function to find and outfile.write headers based on a pattern
 
 def pr_hd():
-   outfile.write("Dept# FRONT OFFICE\n")
+   outfile.write("Dept: FRONT OFFICE\n")
    outfile.write("Syif pagi ...\n")
    outfile.write("Syif petang ...\n")
    outfile.write("Syif malam ...\n")
@@ -174,20 +176,20 @@ pat_sect = {
 
 # Determine section for department
 pat_dept = {
-    r'^fo\b|deluxe room|\b1.[1-9]\s': "front office",
-    r'^hr\b|interview|temuduga|2.[1-9]\s': "hr",
-    r'^f&b\s|revenue|RV|DMP|3.[1-9]\s': "f&b",
-    r'kitchen|4.[1-9]\s': "kitchen",
-    r'steward|Cef|Chef|5.[1-9]\s': "steward",
-    r'security|CCTV|6.[1-9]\s': "security",
-    r'purchasing|7.[1-9]\s': "purchasing",
-    r'maint|8.[1-9]\s': "maintenance",
-    r'asset|9.[1-9]\s': "asset",
-    r'^it\s|10.[1-9]\s': "it",
-    r'housekeeping|freshner|11.[1-9]\s': "housekeeping",
-    r'sales|12.[1-9]\s': "sales",
-    r'finance|invoice|invois|13.[1-9]\s': "finance",
-    r'operation|14.[1-9]\s': "operation",
+    r'^fo\b|deluxe room|\b1\.[1-9]': "front office",
+    r'^hr\b|interview|temuduga|2\.[1-9]': "hr",
+    r'^f&b\s|revenue|RV|DMP|3\.[1-9]': "f&b",
+    r'kitchen|4\.[1-9]': "kitchen",
+    r'steward|Cef|Chef|5\.[1-9]': "steward",
+    r'security|CCTV|6\.[1-9]': "security",
+    r'purchasing|7\.[1-9]': "purchasing",
+    r'maint|8\.[1-9]': "maintenance",
+    r'asset|9\.[1-9]': "asset",
+    r'^it\s|10\.[1-9]': "it",
+    r'housekeeping|freshner|11\.[1-9]': "housekeeping",
+    r'sales|profit|revenue|12\.[1-9]': "sales",
+    r'finance|invoice|invois|13\.[1-9]': "finance",
+    r'operation|14\.[1-9]': "operation",
     r'pengurus': "pengurus"
 }
 
@@ -197,7 +199,7 @@ seen_line = set()
 
 try:
     with open(input_file, 'r') as file:
-y        lines = file.readlines()
+        lines = file.readlines()
 except FileNotFoundError:
     outfile.write("File not found:", input_file)
     sys.exit(1)
@@ -234,4 +236,3 @@ with open(output_file, 'w') as outfile:
         if line != "" and line not in seen_line:
             outfile.write(line + "\n")
             seen_line.add(line)
-
