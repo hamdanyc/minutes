@@ -52,8 +52,15 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Siapak', 'setiap', line)
     line = re.sub(r'kepas', 'kipas', line)
     line = re.sub(r'suat', 'surat', line)
+<<<<<<< HEAD
     line = re.sub(r'soh|soy', 'so', line)
+=======
+<<<<<<< HEAD
+    line = re.sub(r'soh|soy', 'so', line)
+=======
+>>>>>>> c471a6be2859b97008a0f7233593b9a1d6bc9444
     line = re.sub(r'soh', 'so', line)
+>>>>>>> a23fe19d5f8932229be916e239d756acd9353423
     line = re.sub(r'tua', 'tu', line)
     line = re.sub(r'torque clutch', 'torch light', line)
     line = re.sub(r'Miss Nine', 'mess-night', line)
@@ -85,8 +92,15 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Papa', 'apa', line)
     line = re.sub(r'hargana', 'harganya', line)
     line = re.sub(r'kawan', 'mereka', line)
+<<<<<<< HEAD
     line = re.sub(r'ok,', 'ok', line)
+=======
+<<<<<<< HEAD
+    line = re.sub(r'ok,', 'ok', line)
+=======
+>>>>>>> c471a6be2859b97008a0f7233593b9a1d6bc9444
     line = re.sub(r'^ok, ', '^ok', line)
+>>>>>>> a23fe19d5f8932229be916e239d756acd9353423
     line = re.sub(r'kata,\s', 'kata', line)
     line = re.sub(r'telefon kecil', 'telefon kitchen', line)
     line = re.sub(r'kejawatan,', 'perjawatan', line)
@@ -128,7 +142,15 @@ def rep_with(line,flag=re.IGNORECASE):
 # Function to find and outfile.write headers based on a pattern
 
 def pr_hd():
+<<<<<<< HEAD
    outfile.write("Dept: FRONT OFFICE\n")
+=======
+<<<<<<< HEAD
+   outfile.write("Dept: FRONT OFFICE\n")
+=======
+   outfile.write("Dept# FRONT OFFICE\n")
+>>>>>>> a23fe19d5f8932229be916e239d756acd9353423
+>>>>>>> c471a6be2859b97008a0f7233593b9a1d6bc9444
    outfile.write("Syif pagi ...\n")
    outfile.write("Syif petang ...\n")
    outfile.write("Syif malam ...\n")
@@ -199,7 +221,15 @@ seen_line = set()
 
 try:
     with open(input_file, 'r') as file:
+<<<<<<< HEAD
         lines = file.readlines()
+=======
+<<<<<<< HEAD
+        lines = file.readlines()
+=======
+y        lines = file.readlines()
+>>>>>>> a23fe19d5f8932229be916e239d756acd9353423
+>>>>>>> c471a6be2859b97008a0f7233593b9a1d6bc9444
 except FileNotFoundError:
     outfile.write("File not found:", input_file)
     sys.exit(1)
@@ -236,3 +266,10 @@ with open(output_file, 'w') as outfile:
         if line != "" and line not in seen_line:
             outfile.write(line + "\n")
             seen_line.add(line)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> a23fe19d5f8932229be916e239d756acd9353423
+>>>>>>> c471a6be2859b97008a0f7233593b9a1d6bc9444
