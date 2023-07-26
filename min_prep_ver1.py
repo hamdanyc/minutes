@@ -35,7 +35,6 @@ def remove_timestamp(line):
 
 # Function to apply replacements to a line
 def rep_with(line,flag=re.IGNORECASE):
-    line = str(line).lower()
     line = re.sub(r'((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)\b', r'\g<0>', line)
     line = re.sub(r'takbisaan', 'Tapisan', line)
     line = re.sub(r'F[NM][NB]|[Pp]embeli\s', 'F&B ', line)
@@ -179,8 +178,8 @@ pat_dept = {
     r'^fo\b|deluxe room|\b1\.[1-9]': "front office",
     r'^hr\b|interview|temuduga|2\.[1-9]': "hr",
     r'^f&b\s|revenue|RV|DMP|3\.[1-9]': "f&b",
-    r'kitchen|4\.[1-9]': "kitchen",
-    r'steward|Cef|Chef|5\.[1-9]': "steward",
+    r'kitchen|cef|4\.[1-9]': "kitchen",
+    r'steward|5\.[1-9]': "steward",
     r'security|CCTV|6\.[1-9]': "security",
     r'purchasing|7\.[1-9]': "purchasing",
     r'maint|8\.[1-9]': "maintenance",
