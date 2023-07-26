@@ -4,7 +4,11 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False)
 
 # if you have a dictionary...
+<<<<<<< HEAD
 spell.word_frequency.load_dictionary('/home/abi/minutes/my.json')
+=======
+spell.word_frequency.load_dictionary('/home/abi/minutes/out/my.json')
+>>>>>>> a23fe19d5f8932229be916e239d756acd9353423
 
 # or... if you have text
 # spell.word_frequency.load_text_file('malay.txt')
