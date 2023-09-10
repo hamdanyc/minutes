@@ -40,12 +40,12 @@ for filename in file_list:
         text = ' '.join(file.read().splitlines())
 
         # Request summarization from ChatGPT
-        prompt = [f"List the main points with title where each point not more than 2 paragraphs ie. tldr. In next paragraph, translate to Malay: {text}"]
+        prompt = [f"List the main points with title where each point not more than 2 paragraphs: {text}"]
         response = openai.Completion.create(
             engine='text-davinci-003',
             prompt='\n'.join(conversation + prompt),
             max_tokens=555,
-            temperature=0
+            temperature=0.6
         )
         rs = response.choices[0].text.strip()
         print(rs)

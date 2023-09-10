@@ -1,0 +1,23 @@
+Steps:
+
+1.  Prepare raw text from transcript:
+    {
+      program: min_prep_exco.py, 
+      input: jk_siri_#.txt,
+      output: out/out.txt
+    }
+
+2.  Split files.
+    {
+      program: min_shred.py,
+      input:  out/out.txt,
+      output:  shred/*
+    }
+
+3.  Summarise with Chat GPT.
+    {
+      program: min_cgpt2.py,
+      input: shred/*,
+      output: default to terminal
+    }
+
