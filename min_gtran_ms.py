@@ -1,7 +1,7 @@
 import googletrans
 
 # Get the text from the file
-with open("/home/abi/minutes/out/sampel.txt", "r") as f:
+with open("/home/abi/minutes/out/xaa", "r") as f:
     text = f.read()
 
 # Set the source and destination languages
