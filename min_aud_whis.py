@@ -1,9 +1,10 @@
 import replicate
 import os
 
-# Get the audio file path
-# audio_file_path = os.path.join("/home/abi/minutes/audio", "02label.mp3")
-
+# Get the audio file path or URL
+path = os.path.join("/home/abi/minutes/audio", "Mesyuarat JMM 15-9-02.mp3")
+# audio = open(path,"rb")
+audio = "https://docs.google.com/uc?export=open&id=1MmoP-fXZadv5B-mVt3KB1TW5f9gqMpEh"
 # Set the API token
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN")
 
@@ -12,13 +13,15 @@ REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN")
 
 # Transcribe the audio
 response = replicate.run(
-    "openai/whisper:e39e354773466b955265e969568deb7da217804d8e771ea8c9cd0cef6591f8bc",
+    "openai/whisper:91ee9c0c3df30478510ff8c8a3a545add1ad0259ad3a9f78fba57fbc05ee64f7",
     input={
-        "audio": open("/home/abi/minutes/audio/aud.mp3"),
+        "audio": audio,
         "language": "ms",
-        "transcription": "vtt",
+        "transcription": "vtt"
     }
 )
 
 # Print the transcription
-print(response["transcription"])
+f = open("/home/abi/minutes/out/jmm-9-2.txt", "w")
+f.write(response["transcription"])
+f.close()

@@ -1,5 +1,6 @@
-# min_shred.py 
-# input: out/out.txt output: shred/
+# min_shred.py
+# input: out/out.txt
+# output: shred/
 
 import os
 import re
@@ -42,11 +43,11 @@ def process_file(input_file, output_directory):
 
         if current_group is not None:
             current_tokens += len(line.split())
-            
+
             if current_group in output_files:
                 if current_tokens <= 1000:
                     write_to_file([line], output_files[current_group])
-                    
+
                 else:
                     if current_tokens > 1000 and current_tokens <= 2000:
                         new_file = os.path.join(output_directory, f'{current_group_count}a.txt')
