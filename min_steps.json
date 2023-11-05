@@ -1,0 +1,41 @@
+Steps:
+
+1.  Prepare raw text from transcript:
+    {
+      program: min_prep_main.py,
+      run: python3 min_prep_main.py,
+      input: /home/abi/minutes/out/minit.txt,
+      output: /home/abi/minutes/out/out.txt
+    }
+
+2.  Split files.
+    {
+      program: min_shred.py,
+      run: python3 min_shred.py,
+      input:  /home/abi/minutes/out/out.txt,
+      output:  /home/abi/minutes/shred
+    }
+
+3a.  Summarise with Chat GPT.
+    {
+      program: min_cgpt2.py,
+      input: /home/abi/minutes/shred,
+      output: default to terminal
+    }
+
+or
+
+3b.  Summarise with Chat Replicate.
+    {
+      program: min_repl_wr.py,
+      run: python3 min_repl_wr.py,
+      input: /home/abi/minutes/shred,
+      output: /home/abi/minutes/res/
+    }
+
+4.  Translate with Google Translate API
+    {
+      program: min_gtran.py,
+      input: /home/abi/minutes/shred,
+      output: /home/abi/minutes/out/trans.txt
+    }

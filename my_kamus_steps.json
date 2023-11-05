@@ -1,0 +1,29 @@
+Steps:
+
+1.  Create text file from DB:
+    {
+      program: my_rdb.py, 
+      input: news.text.article,
+      output: news.txt
+    }
+
+2.  Tokenise.
+    {
+      program: my_wtk.py,
+      input:  news.txt,
+      output:  my.json
+    }
+
+3.  Create Dictionary.
+    {
+      program: my_dict.py,
+      input: my.json,
+      output: my_gz
+    }
+
+4.  Test Dictionary.
+    {
+      program: my_test.py,
+      input: my.json,
+      output: my_gz
+    }
