@@ -163,7 +163,11 @@ def pr_dept(line, pat_dept, seen, outfile):
             break
 
 # Main code
+<<<<<<< HEAD
 input_file = "/home/abi/minutes/out/minit.txt"
+=======
+input_file = "/home/abi/minutes/out/jmm-9-1.txt"
+>>>>>>> 626d4ef40581f9da95d9bb8557df68a1f67a0808
 
 # Determine section by item
 pat_sect = {
@@ -223,7 +227,11 @@ with open(output_file, 'w') as outfile:
         line = correct_spelling(line)
 
         # Replace unknown words in the line
+<<<<<<< HEAD
         # line = rep_with(line)
+=======
+        line = rep_with(line)
+>>>>>>> 626d4ef40581f9da95d9bb8557df68a1f67a0808
 
         # Find and write section headers based on pat_sect
         pr_sect(line, pat_sect, seen_sections, outfile)
