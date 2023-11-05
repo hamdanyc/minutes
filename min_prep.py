@@ -226,7 +226,7 @@ for line in lines:
     line = correct_spelling(line)
 
     # Replace unknown word to the line
-    line = rep_with(line)
+    # line = rep_with(line)
 
     # Find and print setion headers based on pat_sect
     print_headers(line, pat_sect, seen_sections)
@@ -239,4 +239,3 @@ for line in lines:
        with open("/home/abi/minutes/out/out.txt", "w") as f:
            f.write(line)
            seen_line.add(line)
-

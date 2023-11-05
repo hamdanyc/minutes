@@ -1,3 +1,5 @@
+# input ./shred
+# output 
 import os
 import openai
 

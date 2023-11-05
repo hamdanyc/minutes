@@ -29,8 +29,8 @@ def correct_spelling(input_text):
     return corrected_text
 
 # Input and output directories
-input_path = 'hr.txt'
-output_path = 'out_mod.txt'
+input_path = '/home/abi/minutes/shred/1.txt'
+output_path = '/home/abi/minutes/out/1spc.txt'
 
 # Read the input text file
 with open(input_path, 'r', encoding='utf-8') as file:
