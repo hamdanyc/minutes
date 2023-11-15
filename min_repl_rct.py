@@ -1,4 +1,4 @@
-# min_repl.py
+# min_repl_rct.py
 # Chat completion from replicate
 # input: /home/abi/minutes/shred
 # output: /home/abi/res/
