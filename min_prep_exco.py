@@ -70,11 +70,12 @@ input_file = sys.argv[1]
 # Determine section for item
 pat_sect = {
     r'item-1': "Pendahuluan Pengerusi",
-    r'item-2': "Perkara-Perkara Berbangkit",
-    r'item-3': "Laporan Keahlian",
-    r'item-4': "Laporan Kewangan",
-    r'item-5': "Perkara-perkara Daripada AJK",
-    r'item-4': "Penutup"
+    r'item-2': "Mengesah dan Meluluskan Minit Mesyuarat",
+    r'item-3': "Perkara-Perkara Berbangkit",
+    r'item-4': "Laporan Keahlian",
+    r'item-5': "Laporan Kewangan",
+    r'item-6': "Perkara-perkara Daripada AJK",
+    r'item-7': "Penutup"
 }
 
 # Determine section for department
