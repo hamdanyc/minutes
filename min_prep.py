@@ -148,7 +148,7 @@ def print_hd():
 
 def print_section(line, pat_sect, seen):
     for pattern, section in pat_sect.items():
-        if re.search(section, line, re.IGNORECASE) and section not in seen:
+        if re.search(pattern, line, re.IGNORECASE) and section not in seen:
             print("\nItem#", section.upper())
             seen.add(section)
             break

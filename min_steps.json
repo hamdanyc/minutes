@@ -2,7 +2,7 @@ Steps:
 
 1.  Prepare raw text from transcript:
     {
-      program: min_prep_exco.py, 
+      program: min_prep.py, 
       input: jk_siri_#.txt,
       output: /home/abi/minutes/out/out.txt
     }
