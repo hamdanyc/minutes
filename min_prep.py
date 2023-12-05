@@ -1,7 +1,3 @@
-# min_prep.py (edited)
-
-# usage python3 min_prep.py  input.txt
-
 import sys
 import re
 from spellchecker import SpellChecker
@@ -39,7 +35,6 @@ def remove_timestamp(line):
 
 # Function to apply replacements to a line
 def rep_with(line,flag=re.IGNORECASE):
-    line = str(line).lower()
     line = re.sub(r'((mon|tues|wed(nes)?|thur(s)?|fri|sat(ur)?|sun)(day)?)\b', r'\g<0>', line)
     line = re.sub(r'takbisaan', 'Tapisan', line)
     line = re.sub(r'F[NM][NB]|[Pp]embeli\s', 'F&B ', line)
@@ -56,6 +51,7 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Siapak', 'setiap', line)
     line = re.sub(r'kepas', 'kipas', line)
     line = re.sub(r'suat', 'surat', line)
+    line = re.sub(r'soh|soy', 'so', line)
     line = re.sub(r'soh', 'so', line)
     line = re.sub(r'tua', 'tu', line)
     line = re.sub(r'torque clutch', 'torch light', line)
@@ -88,6 +84,7 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'Papa', 'apa', line)
     line = re.sub(r'hargana', 'harganya', line)
     line = re.sub(r'kawan', 'mereka', line)
+    line = re.sub(r'ok,', 'ok', line)
     line = re.sub(r'^ok, ', '^ok', line)
     line = re.sub(r'kata,\s', 'kata', line)
     line = re.sub(r'telefon kecil', 'telefon kitchen', line)
@@ -127,51 +124,48 @@ def rep_with(line,flag=re.IGNORECASE):
     line = re.sub(r'\?','', line)
     return line
 
-# Function to find and print headers based on a pattern
+# Function to find and outfile.write headers based on a pattern
 
-def print_hd():
-   print("Dept# FRONT OFFICE")
-   print("Syif pagi ...")
-   print("Syif petang ...")
-   print("Syif malam ...")
-   print("daily room report")
-   print("Living-in: 320")
-   print("Standard: 279")
-   print("Deluxe: 35")
-   print("VIP: 6")
-   print("Transit: 7")
-   print("Standard: 3")
-   print("Deluxe: 3")
-   print("VIP: 1")
-   print("Homestay Perwira: 0")
-   print("")
+def pr_title():
+    outfile.write("Title: PROFIT AND LOSS\n")
+    outfile.write("Date: November 23\n")
+    outfile.write("\n")
 
-def print_section(line, pat_sect, seen):
+def pr_hd():
+   outfile.write("Dept: FRONT OFFICE\n")
+   outfile.write("Syif pagi ...\n")
+   outfile.write("Syif petang ...\n")
+   outfile.write("Syif malam ...\n")
+   outfile.write("daily room report\n")
+   outfile.write("Living-in: 320\n")
+   outfile.write("Standard: 279\n")
+   outfile.write("Deluxe: 35\n")
+   outfile.write("VIP: 6\n")
+   outfile.write("Transit: 7\n")
+   outfile.write("Standard: 3\n")
+   outfile.write("Deluxe: 3\n")
+   outfile.write("VIP: 1\n")
+   outfile.write("Homestay Perwira: 0\n")
+   outfile.write("\n")
+
+def pr_sect(line, pat_sect, seen, outfile):
     for pattern, section in pat_sect.items():
         if re.search(pattern, line, re.IGNORECASE) and section not in seen:
-            print("\nItem#", section.upper())
+            outfile.write("\nItem: " + section.upper() + "\n")
             seen.add(section)
             break
 
-def print_headers(line, pat_dept, seen):
+def pr_dept(line, pat_dept, seen, outfile):
     for pattern, department in pat_dept.items():
+        title = ""
         if re.search(pattern, line, re.IGNORECASE) and department not in seen:
-            print("\nDept#", department.upper())
+            outfile.write("\nDept: " + department.upper() + "\n")
             seen.add(department)
             break
 
-# Remove duplicate (not run)
-def remove_duplicates(line, seen):
-
-    if line not in seen:
-       cleaned = line
-       seen.add(line)
-
-    return cleaned
-
 # Main code
 if len(sys.argv) < 2:
-    print("Please provide the input file as a command-line argument.")
+    outfile.write("Please provide the input file as a command-line argument.")
     sys.exit(1)
 
 input_file = sys.argv[1]
@@ -186,20 +180,20 @@ pat_sect = {
 
 # Determine section for department
 pat_dept = {
-    r'^fo\b|deluxe room|\b1.[1-9]\s': "front office",
-    r'^hr\b|interview|temuduga|2.[1-9]\s': "hr",
-    r'^f&b\s|revenue|RV|DMP|3.[1-9]\s': "f&b",
-    r'kitchen|4.[1-9]\s': "kitchen",
-    r'steward|Cef|Chef|5.[1-9]\s': "steward",
-    r'security|CCTV|6.[1-9]\s': "security",
-    r'purchasing|7.[1-9]\s': "purchasing",
-    r'maint|8.[1-9]\s': "maintenance",
-    r'asset|9.[1-9]\s': "asset",
-    r'^it\s|10.[1-9]\s': "it",
-    r'housekeeping|freshner|11.[1-9]\s': "housekeeping",
-    r'sales|12.[1-9]\s': "sales",
-    r'finance|invoice|invois|13.[1-9]\s': "finance",
-    r'operation|14.[1-9]\s': "operation",
+    r'^fo\b|deluxe room|\b1\.[1-9]': "front office",
+    r'^hr\b|interview|temuduga|2\.[1-9]': "hr",
+    r'^f&b\s|revenue|RV\b|DMP\b|ban(k|q)uet|\b3\.[1-9]': "f&b",
+    r'kitchen|cef|4\.[1-9]': "kitchen",
+    r'steward|5\.[1-9]': "steward",
+    r'security|CCTV|6\.[1-9]': "security",
+    r'purchasing|7\.[1-9]': "purchasing",
+    r'maint|8\.[1-9]': "maintenance",
+    r'asset|9\.[1-9]': "asset",
+    r'software|pc|application|network|device\s|10\.[1-9]': "it",
+    r'housekeeping|freshner|11\.[1-9]': "housekeeping",
+    r'sales|profit|revenue|12\.[1-9]': "sales",
+    r'finance|invoice|invois|13\.[1-9]': "finance",
+    r'operation|14\.[1-9]': "operation",
     r'pengurus': "pengurus"
 }
 
@@ -211,32 +205,38 @@ try:
     with open(input_file, 'r') as file:
         lines = file.readlines()
 except FileNotFoundError:
-    print("File not found:", input_file)
+    outfile.write("File not found:", input_file)
     sys.exit(1)
 
-print_hd()
+# Output file name
+output_file = "out/out.txt"
 
-for line in lines:
-    line = line.strip()
+# Open the output file in write mode
+with open(output_file, 'w') as outfile:
 
-    # Remove time stamp
-    line = remove_timestamp(line)
+    # Write headers to the output file
+    pr_title()
 
-    # Perform spelling correction
-    line = correct_spelling(line)
+    # Process each line in the input file
+    for line in lines:
+        line = line.strip()
 
-    # Replace unknown word to the line
-    line = rep_with(line)
+        # Remove timestamp
+        line = remove_timestamp(line)
 
-    # Find and print setion headers based on pat_sect
-    print_headers(line, pat_sect, seen_sections)
+        # Perform spelling correction
+        line = correct_spelling(line)
 
-    # Find and print headers based on pat_dept
-    print_headers(line, pat_dept, seen_departments)
+        # Replace unknown words in the line
+        line = rep_with(line)
 
-    # Print the cleaned line if it's not empty
-    if line != "" and line not in seen_line:
-       with open("/home/abi/minutes/out/out.txt", "w") as f:
-           f.write(line)
-           seen_line.add(line)
+        # Find and write section headers based on pat_sect
+        pr_sect(line, pat_sect, seen_sections, outfile)
 
+        # Find and write department headers based on pat_dept
+        pr_dept(line, pat_dept, seen_sections, outfile)
+
+        # Write the cleaned line to the output file if it's not empty
+        if line != "" and line not in seen_line:
+            outfile.write(line + "\n")
+            seen_line.add(line)
