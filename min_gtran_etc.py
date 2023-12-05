@@ -11,14 +11,18 @@ from googletrans.constants import LANGUAGES
 source_language = "en"  # Input text language (e.g., English)
 target_language = "ms"  # Output language (e.g., Spanish)
 
-# Get the input files from the input-dir
-input_files = os.listdir("/home/abi/minutes/res")
+def keyfunc(x):
+    return x.rjust(100, '0')
+
+# Get the input files from the input-dir files_sorted = sorted(files, key=keyfunc)
+# input_files = sorted(os.listdir("/home/abi/minutes/res"), key=keyfunc)
+input_files = sorted(os.listdir("/home/abi/minutes/res"))
 
 # init /home/abi/minutes/out/trans.txt
 with open("/home/abi/minutes/out/trans.txt", "w"):
     pass
 
-# Loop over the input files
+# Loop over the input files sorted(os.listdir(folder_path)):
 for input_file in input_files:
     # Get the input text from the file
     with open(f"/home/abi/minutes/res/{input_file}", "r") as file:
@@ -32,7 +36,7 @@ for input_file in input_files:
 
         # Print the translation
         # print(f"Source Language ({LANGUAGES[source_language]}): {text_to_translate}")
-        print(f"Artikel ({LANGUAGES[target_language]}): {translated_text.text}")
+        # print(f"Artikel ({LANGUAGES[target_language]}): {translated_text.text}")
 
         # You can also save the translated text to a file if needed
         output_file_path = "/home/abi/minutes/out/trans.txt"

@@ -1,4 +1,4 @@
-# min_prep_exco.py
+# min_prep_rct.py
 # input jk_siri_#.txt
 # output out/out.txt
 
@@ -40,24 +40,15 @@ def remove_timestamp(line):
 # Function to find and outfile.write headers based on a pattern
 
 def pr_hd():
-   outfile.write("MESYUARAT JK RAFOC\n")
-   outfile.write("Siri: 3\t\tTahun:2023")
+   outfile.write("RAFOC COFFEE TALK\n")
+   outfile.write("Siri: 11\t\tTahun:2023")
 
    outfile.write("\n")
 
 def pr_sect(line, pat_sect, seen, outfile):
     for pattern, section in pat_sect.items():
-        if re.search(pattern, line, re.IGNORECASE) and section not in seen:
-            outfile.write("\nItem: " + section.upper() + "\n")
-            seen.add(section)
-            break
-
-def pr_dept(line, pat_dept, seen, outfile):
-    for pattern, department in pat_dept.items():
-        title = ""
-        if re.search(pattern, line, re.IGNORECASE) and department not in seen:
-            outfile.write("\nDept: " + department.upper() + "\n")
-            seen.add(department)
+        if re.search(pattern, line, re.IGNORECASE):
+            outfile.write("\nspeaker: " + section.upper() + "\n")
             break
 
 # Main code
@@ -69,32 +60,22 @@ input_file = sys.argv[1]
 
 # Determine section for item
 pat_sect = {
-    r'item-1': "Pendahuluan Pengerusi",
-    r'item-2': "Mengesah dan Meluluskan Minit Mesyuarat",
-    r'item-3': "Perkara-Perkara Berbangkit",
-    r'item-4': "Laporan Keahlian",
-    r'item-5': "Laporan Kewangan",
-    r'item-6': "Perkara-perkara Daripada AJK",
-    r'item-7': "Penutup"
-}
-
-# Determine section for department
-pat_dept = {
-    r'^fo\b|deluxe room|\b1\.[1-9]': "front office",
-    r'^hr\b|interview|temuduga|2\.[1-9]': "hr",
-    r'^f&b\s|revenue|RV|DMP|3\.[1-9]': "f&b",
-    r'kitchen|cef|4\.[1-9]': "kitchen",
-    r'steward|5\.[1-9]': "steward",
-    r'security|CCTV|6\.[1-9]': "security",
-    r'purchasing|7\.[1-9]': "purchasing",
-    r'maint|8\.[1-9]': "maintenance",
-    r'asset|9\.[1-9]': "asset",
-    r'^it\s|10\.[1-9]': "it",
-    r'housekeeping|freshner|11\.[1-9]': "housekeeping",
-    r'sales|profit|revenue|12\.[1-9]': "sales",
-    r'finance|invoice|invois|13\.[1-9]': "finance",
-    r'operation|14\.[1-9]': "operation",
-    r'pengurus': "pengurus"
+    r'speaker-01': "Moderator",
+    r'speaker-2': "Lt Kol Rahman Wok",
+    r'speaker-3': "Laksma Dato Nick Peterson TLDM",
+    r'speaker-4': "Lt Kol Abdullah",
+    r'speaker-5': "Laksda Dato' Danial",
+    r'speaker-6': "Lt Jen Dato' Nawi",
+    r'speaker-7': "Mej Dato' Abd Manan",
+    r'speaker-8': "Mej Jen Datuk Mohd Halim",
+    r'speaker-9': "Lt Kdr Phua",
+    r'speaker-10': "Mej Jen Dato' Megat",
+    r'speaker-11': "Mej Mior Rosli",
+    r'speaker-12': "Brig Jen Dato' Nazari",
+    r'speaker-13': "Lt Kol Shahrudin Hanifah ",
+    r'speaker-14': "Mej Jen Dato' Termizi",
+    r'speaker-15': "Kol Nik Zainin",
+    r'speaker-16': "Lt Jen Dato' Sri Aziz"
 }
 
 # seen_departments = set()
@@ -130,10 +111,7 @@ with open(output_file, 'w') as outfile:
         # Find and write section headers based on pat_sect
         pr_sect(line, pat_sect, seen_sections, outfile)
 
-        # Find and write department headers based on pat_dept
-        # pr_dept(line, pat_dept, seen_sections, outfile)
-
         # Write the cleaned line to the output file if it's not empty
-        if line != "" and line not in seen_line:
+        if line != "": # and line not in seen_line:
             outfile.write(line + "\n")
             seen_line.add(line)

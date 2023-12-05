@@ -30,8 +30,18 @@ for input_file in input_files:
     with open(f"/home/abi/minutes/res/{input_file}", "w", encoding="utf-8") as file:
         # Run the Llama model
         for item in replicate.run(
-            "meta/llama-2-13b-chat:f4e2de70d66816a838a89eeeb621910adffb0dd0baba3976c96980970978018d",
-            input={"prompt": f"{system_prompt} {input_text}"},
+            "meta/llama-2-7b-chat:13c3cdee13ee059ab779f0291d29054dab00a47dad8261375654de5540165fb0",
+            input={
+                   "debug": False,
+                    "top_k": -1,
+                    "top_p": 1,
+                    "prompt": f"{system_prompt} {input_text}",
+                    "max_new_tokens": 800,
+                    "temperature": 0.3,
+                    "min_new_tokens": -1,
+                    "repetition_penalty": 1
+                   }
         ):
+
             # print(item, end="")
             file.write(item)

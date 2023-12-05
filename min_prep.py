@@ -240,3 +240,10 @@ with open(output_file, 'w') as outfile:
         if line != "" and line not in seen_line:
             outfile.write(line + "\n")
             seen_line.add(line)
+
+    # Print the cleaned line if it's not empty
+    if line != "" and line not in seen_line:
+       with open("/home/abi/minutes/out/out.txt", "w") as f:
+           f.write(line)
+           seen_line.add(line)
+

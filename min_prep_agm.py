@@ -40,14 +40,14 @@ def remove_timestamp(line):
 # Function to find and outfile.write headers based on a pattern
 
 def pr_hd():
-   outfile.write("MESYUARAT JK RAFOC\n")
-   outfile.write("Siri: 3\t\tTahun:2023")
+   outfile.write("MESYUARAT AGUNG TAHUNAN RAFOC\n")
+   outfile.write("Tarikh: 8 Okt 2023")
 
    outfile.write("\n")
 
 def pr_sect(line, pat_sect, seen, outfile):
     for pattern, section in pat_sect.items():
-        if re.search(pattern, line, re.IGNORECASE) and section not in seen:
+        if re.search(pattern, line, re.IGNORECASE):
             outfile.write("\nItem: " + section.upper() + "\n")
             seen.add(section)
             break
@@ -70,12 +70,11 @@ input_file = sys.argv[1]
 # Determine section for item
 pat_sect = {
     r'item-1': "Pendahuluan Pengerusi",
-    r'item-2': "Mengesah dan Meluluskan Minit Mesyuarat",
-    r'item-3': "Perkara-Perkara Berbangkit",
-    r'item-4': "Laporan Keahlian",
-    r'item-5': "Laporan Kewangan",
-    r'item-6': "Perkara-perkara Daripada AJK",
-    r'item-7': "Penutup"
+    r'item-2': "Laporan Tahunan",
+    r'item-3': "Laporan Kewangan",
+    r'item-4': "Usul Pindaan",
+    r'item-5': "Perkara-perkara Daripada Ahli",
+    r'item-6': "Penutup"
 }
 
 # Determine section for department
