@@ -12,7 +12,9 @@ source_language = "en"  # Input text language (e.g., English)
 target_language = "ms"  # Output language (e.g., Spanish)
 
 # Get the input files from the input-dir
-input_files = os.listdir("/home/abi/minutes/res")
+input_dir = "/home/abi/minutes/res"
+# input_files = os.listdir("/home/abi/minutes/res")
+input_files = sorted(os.listdir(input_dir), key=lambda x: int(''.join(filter(str.isdigit, x))))
 
 # init /home/abi/minutes/out/trans.txt
 with open("/home/abi/minutes/out/trans.txt", "w"):
@@ -32,7 +34,7 @@ for input_file in input_files:
 
         # Print the translation
         # print(f"Source Language ({LANGUAGES[source_language]}): {text_to_translate}")
-        print(f"Artikel ({LANGUAGES[target_language]}): {translated_text.text}")
+        # print(f"Artikel ({LANGUAGES[target_language]}): {translated_text.text}")
 
         # You can also save the translated text to a file if needed
         output_file_path = "/home/abi/minutes/out/trans.txt"

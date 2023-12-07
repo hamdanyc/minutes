@@ -31,7 +31,11 @@ for input_file in input_files:
         # Run the Llama model
         for item in replicate.run(
             "meta/llama-2-13b-chat:f4e2de70d66816a838a89eeeb621910adffb0dd0baba3976c96980970978018d",
-            input={"prompt": f"{system_prompt} {input_text}"},
+            input={"prompt": f"{system_prompt} {input_text}",
+                "temperature": 0.75,
+                "max_new_tokens": 500,
+                "min_new_tokens": -1
+                }
         ):
             # print(item, end="")
             file.write(item)
