@@ -5,7 +5,7 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('/workspace/minutes/my.gz')
+spell.word_frequency.load_dictionary('my.gz')
 
 def correct_spelling(input_text):
     lines = input_text.split('\n')
@@ -29,8 +29,8 @@ def correct_spelling(input_text):
     return corrected_text
 
 # Input and output directories
-input_path = '/workspace/minutes/shred/1.txt'
-output_path = '/workspace/minutes/out/1spc.txt'
+input_path = 'shred/1.txt'
+output_path = 'out/1spc.txt'
 
 # Read the input text file
 with open(input_path, 'r', encoding='utf-8') as file:

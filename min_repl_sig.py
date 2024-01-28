@@ -5,7 +5,7 @@ system_prompt = "You are a secretary to a departmental meeting. Your task is to 
 REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_TOKEN")
 
 # Get the input from the file
-with open("/workspace/minutes/shred/1.txt", "r") as f:
+with open("shred/1.txt", "r") as f:
     input_text = f.read()
 
 # Run the Llama model

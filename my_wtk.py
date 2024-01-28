@@ -26,11 +26,11 @@ def write_json(word_counts, filename):
         f.write("\n")
 
 if __name__ == "__main__":
-    input_file = "/workspace/minutes/out/news.txt"
+    input_file = "out/news.txt"
     with open(input_file, "r") as f:
         text = f.read()
     filtered_text = filter_numbers_and_dates(text)
     tokens = tokenize_text(filtered_text)
     word_counts = get_word_frequency(tokens)
-    write_json(word_counts, "/workspace/minutes/out/my.json")
+    write_json(word_counts, "out/my.json")
 

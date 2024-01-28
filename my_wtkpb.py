@@ -27,7 +27,7 @@ def write_json(word_counts, filename):
 
 # input: head -7000 news.txt > news.tmp
 if __name__ == "__main__":
-    input_file = "/workspace/minutes/out/news.tmp"
+    input_file = "out/news.tmp"
     with open(input_file, "r") as f:
         text = f.read()
     filtered_text = filter_numbers_and_dates(text)
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     with tqdm.tqdm(total=len(tokens),leave=True) as pbar:
         for token in tokens:
             pbar.update()
-    write_json(word_counts, "/workspace/minutes/out/my.json")
+    write_json(word_counts, "out/my.json")
 

@@ -25,7 +25,7 @@ def read_database(host, database, user, password, table, field):
     return results
 
     # Write the results to a text file
-    with open("/workspace/minutes/out/news.txt", "w") as f:
+    with open("out/news.txt", "w") as f:
       for row in results:
          if row[0] is not None:
              f.write(row[0] + "\n")

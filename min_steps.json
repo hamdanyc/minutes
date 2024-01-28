@@ -34,7 +34,7 @@ or
 
 4.  Translate with Google Translate API
     {
-      program: min_gtran.py,
+      program: min_gtran.py, min_gtran_my.py
       input: /home/abi/minutes/shred,
-      output: /home/abi/minutes/out/trans.txt
+      output: /home/abi/minutes/out/trans.txt, my/
     }

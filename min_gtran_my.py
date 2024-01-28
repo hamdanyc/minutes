@@ -1,29 +1,24 @@
 from googletrans import Translator
-from googletrans.constants import LANGUAGES
+import os
 
-# Define the input and output language codes
-source_language = "en"  # Input text language (e.g., English)
-target_language = "ms"  # Output language (e.g., Spanish)
+# Input and output folder paths
+input_folder = 'res/'
+output_folder = 'my/'
 
-# Load the text from a file
-input_file_path = "/workspace/minutes/out/sampel.txt"  # Replace with the path to your input text file
-
-with open(input_file_path, "r", encoding="utf-8") as file:
-    text_to_translate = file.read()
+# Create the output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
 # Initialize the translator
 translator = Translator()
 
-# Translate the text
-translated_text = translator.translate(text_to_translate, src=source_language, dest=target_language)
-
-# Print the translation
-# print(f"Source Language ({LANGUAGES[source_language]}): {text_to_translate}")
-print(f"Artikel ({LANGUAGES[target_language]}): {translated_text.text}")
-
-# You can also save the translated text to a file if needed
-output_file_path = "/workspace/minutes/out/sampel_output.txt"
-with open(output_file_path, "w", encoding="utf-8") as file:
-    file.write(translated_text.text)
-
-print(f"Translation saved to {output_file_path}")
+# Iterate through the text files in the input folder
+for file_name in os.listdir(input_folder):
+    if file_name.endswith('.txt'):
+        with open(os.path.join(input_folder, file_name), 'r') as file:
+            text = file.read()
+            # Translate the text to Malay
+            translated = translator.translate(text, src='en', dest='ms')
+            # Write the translated text to a new file in the output folder
+            with open(os.path.join(output_folder, file_name), 'w') as output_file:
+                output_file.write(translated.text)

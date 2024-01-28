@@ -7,7 +7,7 @@ import openai
 openai.api_key = $OPENAI_API_KEY
 
 # Set the directory containing the text files
-directory = '/workspace/minutes/shred'
+directory = 'shred'
 
 # Get the list of text files in the directory
 file_list = os.listdir(directory)

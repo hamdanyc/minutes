@@ -11,7 +11,7 @@ spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 # if you have a dictionary...
 spell.word_frequency.load_dictionary('my.gz')
 
-input_file = "out/min_jmm_8.txt"
+input_file = "out/min_1_6_23.txt"
 
 def correct_spelling(input_text):
     lines = input_text.split('\n')

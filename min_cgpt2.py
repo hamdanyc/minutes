@@ -22,7 +22,7 @@ You are a secretary to a departmental meeting. Your task is to write a concise m
 conversation = [init_prompt]
 
 # Set the directory containing the text files
-directory = '/workspace/minutes/shred'
+directory = 'shred'
 
 # Set the directory containing the text files
 file_list = os.listdir(directory)

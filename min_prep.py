@@ -6,7 +6,7 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('/workspace/minutes/my.gz')
+spell.word_frequency.load_dictionary('my.gz')
 
 def correct_spelling(input_text):
     lines = input_text.split('\n')
@@ -243,7 +243,7 @@ with open(output_file, 'w') as outfile:
 
     # Print the cleaned line if it's not empty
     if line != "" and line not in seen_line:
-       with open("/workspace/minutes/out/out.txt", "w") as f:
+       with open("out/out.txt", "w") as f:
            f.write(line)
            seen_line.add(line)
 

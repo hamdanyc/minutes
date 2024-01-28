@@ -53,7 +53,7 @@ def pr_sect(line, pat_sect, seen, outfile):
 
 # Main code
 seen_line = set()
-input_file = "out/agm23.txt"
+input_file = "out/exco_1_24.txt"
 
 # Determine section for item
 pat_sect = {
@@ -66,6 +66,9 @@ pat_sect = {
     r'item:7': "Penutup"
 }
 
+seen_sections = set()
+seen_line = set()
+
 with open(input_file, 'r') as file:
     lines = file.readlines()
 
@@ -77,6 +80,7 @@ with open(output_file, 'w') as outfile:
 
     # Write headers to the output file
     pr_hd()
+    
 
     # Process each line in the input file
     for line in lines:
@@ -87,6 +91,9 @@ with open(output_file, 'w') as outfile:
 
         # Perform spelling correction
         line = correct_spelling(line)
+
+        # Find and write section headers based on pat_sect
+        pr_sect(line, pat_sect, seen_sections, outfile)
 
         # Write the cleaned line to the output file if it's not empty
         if line != "" and line not in seen_line:

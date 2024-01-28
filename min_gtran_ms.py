@@ -1,7 +1,7 @@
 import googletrans
 
 # Get the text from the file
-with open("/workspace/minutes/out/xaa", "r") as f:
+with open("out/xaa", "r") as f:
     text = f.read()
 
 # Set the source and destination languages
