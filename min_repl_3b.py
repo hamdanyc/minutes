@@ -1,7 +1,7 @@
 # min_repl.py
 # Chat completion from replicate
-# input: /home/abi/minutes/shred
-# output: /home/abi/res/
+# input: /workspace/minutes/shred
+# output: /workspace/res/
 
 import replicate
 import os
@@ -12,10 +12,10 @@ system_prompt = "You are a secretary to a departmental meeting. Your task is to 
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN")
 
 # Get the input files from the input-dir
-input_files = os.listdir("/home/abi/minutes/shred")
+input_files = os.listdir("/workspace/minutes/shred")
 
 # Remove existing files from the output directory
-output_directory = "/home/abi/minutes/res"
+output_directory = "/workspace/minutes/res"
 for filename in os.listdir(output_directory):
     file_path = os.path.join(output_directory, filename)
     os.remove(file_path)
@@ -23,11 +23,11 @@ for filename in os.listdir(output_directory):
 # Loop over the input files
 for input_file in input_files:
     # Get the input text from the file
-    with open(f"/home/abi/minutes/shred/{input_file}", "r") as f:
+    with open(f"/workspace/minutes/shred/{input_file}", "r") as f:
         input_text = f.read()
 
     # Save the response text to output_directory
-    with open(f"/home/abi/minutes/res/{input_file}", "w", encoding="utf-8") as file:
+    with open(f"/workspace/minutes/res/{input_file}", "w", encoding="utf-8") as file:
         # Run the Llama model
         for item in replicate.run(
             "meta/llama-2-7b-chat:13c3cdee13ee059ab779f0291d29054dab00a47dad8261375654de5540165fb0",

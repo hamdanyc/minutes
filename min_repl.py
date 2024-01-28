@@ -1,7 +1,7 @@
 # min_repl.py
 # Chat completion from replicate
-# input: /home/abi/minutes/shred
-# output: > /home/abi/out/minit.txt
+# input: shred
+# output: > /workspace/out/minit.txt
 
 import replicate
 import os
@@ -12,12 +12,12 @@ system_prompt = "You are a secretary to a departmental meeting. Your task is to 
 REPLICATE_API_TOKEN = os.environ.get("REPLICATE_API_TOKEN")
 
 # Get the input files from the input-dir
-input_files = os.listdir("/home/abi/minutes/shred")
+input_files = os.listdir("shred")
 
 # Loop over the input files
 for input_file in input_files:
     # Get the input text from the file
-    with open(f"/home/abi/minutes/shred/{input_file}", "r") as f:
+    with open(f"shred/{input_file}", "r") as f:
         input_text = f.read()
 
     # Run the Llama model

@@ -1,64 +1,63 @@
 import os
+import re
 
-def tokenize_text(text):
-    # Split the text into individual tokens (words and punctuation)
-    return text.split()
+def remove_duplicates(input_file):
+    lines_seen = set()  # Set to store unique lines
+    cleaned_lines = []
 
+    with open(input_file, 'r') as file:
+        for line in file:
+            if line not in lines_seen:
+                cleaned_lines.append(line)
+                lines_seen.add(line)
 
-def split_file(input_file_path, output_path, max_tokens_per_file=1000):
-    with open(input_file_path, 'r') as input_file:
-        current_dept = None
-        current_counter = 1
-        sub_counter = ord('a')
-        token_count = 0
-        output_file = None
+    return cleaned_lines
 
-        for line in input_file:
-            if line.strip().startswith('Dept:'):
-                dept = line.strip().split('Dept:')[1].strip()
-                if current_dept != dept:
-                    current_dept = dept
-                    current_counter += 1
-                    sub_counter = ord('a')
-                    token_count = 0
-                    if output_file:
-                        output_file.close()
-                if token_count >= max_tokens_per_file:
-                    output_file.close()
-                    if sub_counter > ord('a'):
-                        os.rename(
-                            os.path.join(output_path, f"{current_counter}_{chr(sub_counter-1)}.txt"),
-                            os.path.join(output_path, f"{current_counter}.txt")
-                        )
-                    sub_counter = ord('a')
-                    token_count = 0
-                if sub_counter == ord('a'):
-                    output_file = open(os.path.join(output_path, f"{current_counter}.txt"), 'a')
-                else:
-                    output_file = open(os.path.join(output_path, f"{current_counter}_{chr(sub_counter)}.txt"), 'a')
-                output_file.write(line)
-                token_count += len(tokenize_text(line))
-            else:
-                if output_file:
-                    output_file.write(line)
-                    token_count += len(tokenize_text(line))
+def write_to_file(output_file, line):
+    with open(output_file, 'a') as file:
+        file.write(line)
 
-        if output_file:
-            output_file.close()
+def process_file(input_file, output_directory):
+    cleaned_lines = remove_duplicates(input_file)
+    group_counts = {}
+    current_group = None
+    current_tokens = 0
 
+    for line in cleaned_lines:
+        match = re.search(r'(dept:|item:|speaker:)', line)
+        if match:
+            if current_group is not None:
+                current_group_count = group_counts[current_group]
+                file_suffix = chr(97 + (current_tokens - 1) // 1000) if current_tokens <= 5000 else 'e'
+                output_file = os.path.join(output_directory, f'{current_group_count}{file_suffix}.txt')
+                write_to_file(output_file, line)
 
-def remove_files_in_directory(directory):
-    for filename in os.listdir(directory):
-        file_path = os.path.join(directory, filename)
-        if os.path.isfile(file_path):
-            os.remove(file_path)
+            current_group = match.group().strip()
+            group_counts[current_group] = group_counts.get(current_group, 0) + 1
+            current_tokens = 0
+        else:
+            if current_group is not None:
+                current_tokens += len(line.split())
+                if current_group in group_counts:
+                    current_group_count = group_counts[current_group]
+                    file_suffix = chr(97 + (current_tokens - 1) // 1000) if current_tokens <= 5000 else 'e'
+                    output_file = os.path.join(output_directory, f'{current_group_count}{file_suffix}.txt')
+                    write_to_file(output_file, line)
 
+    # Write the remaining lines of the last group
+    if current_group is not None:
+        current_group_count = group_counts[current_group]
+        file_suffix = chr(97 + (current_tokens - 1) // 1000) if current_tokens <= 5000 else 'e'
+        output_file = os.path.join(output_directory, f'{current_group_count}{file_suffix}.txt')
+        for line in cleaned_lines:
+            write_to_file(output_file, line)
 
-input_file_path = "out/out.txt"
-output_path = "shred/"  # Set your desired output directory here
+# Declare the input file path and the output directory
+input_file_path = 'out/out.txt'
+output_directory = 'shred/'
 
-# Remove all files in the output directory before separating the text file
-remove_files_in_directory(output_path)
+# Create the output directory if it doesn't exist
+os.makedirs(output_directory, exist_ok=True)
 
-# Separate the text file into multiple output files
-split_file(input_file_path, output_path)
+# Process the file
+process_file(input_file_path, output_directory)

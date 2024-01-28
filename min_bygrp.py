@@ -39,8 +39,8 @@ def process_file(input_file, output_directory):
                 write_to_file([line], new_file)
 
 # Declare the input file path and the output directory
-input_file_path = '/home/abi/minutes/out/out.txt'
-output_directory = '/home/abi/minutes/out/chunk'
+input_file_path = '/workspace/minutes/out/out.txt'
+output_directory = '/workspace/minutes/out/chunk'
 
 # Remove existing files from the output directory
 for filename in os.listdir(output_directory):

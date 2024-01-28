@@ -4,10 +4,10 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('/home/abi/minutes/my.json')
+spell.word_frequency.load_dictionary('/workspace/minutes/my.json')
 
 # or... if you have text
 # spell.word_frequency.load_text_file('malay.txt')
 
 # export it out for later use!
-spell.export('/home/abi/minutes/my.gz', gzipped=True)
+spell.export('/workspace/minutes/my.gz', gzipped=True)

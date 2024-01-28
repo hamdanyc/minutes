@@ -31,7 +31,7 @@ def process_file(input_file, output_directory):
     current_tokens = 0
 
     for line in cleaned_lines:
-        if re.search(r'(Dept:|Item:|speaker:)', line):
+        if re.search(r'(dept:|item:|speaker:)', line):
             current_group = line.strip()
             current_group_count += 1
             current_tokens = 0
@@ -76,8 +76,8 @@ def process_file(input_file, output_directory):
                 write_to_file([line], new_file)
 
 # Declare the input file path and the output directory
-input_file_path = '/home/abi/minutes/out/out.txt'
-output_directory = '/home/abi/minutes/shred/'
+input_file_path = 'out/out.txt'
+output_directory = 'shred/'
 
 # Remove existing files from the output directory
 for filename in os.listdir(output_directory):
