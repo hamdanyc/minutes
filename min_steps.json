@@ -2,7 +2,7 @@ Steps:
 
 1.  Prepare raw text from transcript:
     {
-      program: min_prep.py, 
+      program: min_prep_main.py, 
       input: /home/abi/minutes/out/minit.txt,
       output: /home/abi/minutes/out/out.txt
     }

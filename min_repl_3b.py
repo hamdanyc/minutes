@@ -37,7 +37,7 @@ for input_file in input_files:
                     "top_p": 1,
                     "prompt": f"{system_prompt} {input_text}",
                     "max_new_tokens": 800,
-                    "temperature": 0.3,
+                    "temperature": 0.75,
                     "min_new_tokens": -1,
                     "repetition_penalty": 1
                    }

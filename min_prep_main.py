@@ -1,8 +1,7 @@
 # min_prep_main.py
-# input: /home/abi/minutes/out/minit.txt
-# output: /home/abi/minutes/out/out.txt
+# input: out/minit.txt
+# output: out/out.txt
 
-import sys
 import re
 from spellchecker import SpellChecker
 
@@ -10,7 +9,9 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('/home/abi/minutes/my.gz')
+spell.word_frequency.load_dictionary('my.gz')
+
+input_file = "out/min_1_6_23.txt"
 
 def correct_spelling(input_text):
     lines = input_text.split('\n')
@@ -163,11 +164,6 @@ def pr_dept(line, pat_dept, seen, outfile):
             break
 
 # Main code
-<<<<<<< HEAD
-input_file = "/home/abi/minutes/out/minit.txt"
-=======
-input_file = "/home/abi/minutes/out/jmm-9-1.txt"
->>>>>>> 626d4ef40581f9da95d9bb8557df68a1f67a0808
 
 # Determine section by item
 pat_sect = {
@@ -200,15 +196,11 @@ seen_departments = set()
 seen_sections = set()
 seen_line = set()
 
-try:
-    with open(input_file, 'r') as file:
-        lines = file.readlines()
-except FileNotFoundError:
-    outfile.write("File not found:", input_file)
-    sys.exit(1)
+with open(input_file, 'r') as file:
+    lines = file.readlines()
 
 # Output file name
-output_file = "/home/abi/minutes/out/out.txt"
+output_file = "out/out.txt"
 
 # Open the output file in write mode
 with open(output_file, 'w') as outfile:
@@ -227,11 +219,7 @@ with open(output_file, 'w') as outfile:
         line = correct_spelling(line)
 
         # Replace unknown words in the line
-<<<<<<< HEAD
         # line = rep_with(line)
-=======
-        line = rep_with(line)
->>>>>>> 626d4ef40581f9da95d9bb8557df68a1f67a0808
 
         # Find and write section headers based on pat_sect
         pr_sect(line, pat_sect, seen_sections, outfile)
