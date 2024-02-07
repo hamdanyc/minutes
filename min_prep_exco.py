@@ -53,18 +53,21 @@ def pr_sect(line, pat_sect, seen, outfile):
 
 # Main code
 seen_line = set()
-input_file = "out/exco_4_23.vtt"
+input_file = "out/exco_1_24.txt"
 
 # Determine section for item
 pat_sect = {
-    r'item-1': "Pendahuluan Pengerusi",
-    r'item-2': "Mengesah dan Meluluskan Minit Mesyuarat",
-    r'item-3': "Perkara-Perkara Berbangkit",
-    r'item-4': "Laporan Keahlian",
-    r'item-5': "Laporan Kewangan",
-    r'item-6': "Perkara-perkara Daripada AJK",
-    r'item-7': "Penutup"
+    r'item:1': "Pendahuluan Pengerusi",
+    r'item:2': "Mengesah dan Meluluskan Minit Mesyuarat",
+    r'item:3': "Perkara-Perkara Berbangkit",
+    r'item:4': "Laporan Keahlian",
+    r'item:5': "Laporan Kewangan",
+    r'item:6': "Perkara-perkara Daripada AJK",
+    r'item:7': "Penutup"
 }
+
+seen_sections = set()
+seen_line = set()
 
 with open(input_file, 'r') as file:
     lines = file.readlines()
@@ -77,6 +80,7 @@ with open(output_file, 'w') as outfile:
 
     # Write headers to the output file
     pr_hd()
+    
 
     # Process each line in the input file
     for line in lines:
@@ -91,10 +95,8 @@ with open(output_file, 'w') as outfile:
         # Find and write section headers based on pat_sect
         pr_sect(line, pat_sect, seen_sections, outfile)
 
-        # Find and write department headers based on pat_dept
-        # pr_dept(line, pat_dept, seen_sections, outfile)
-
         # Write the cleaned line to the output file if it's not empty
         if line != "" and line not in seen_line:
             outfile.write(line + "\n")
             seen_line.add(line)
+  

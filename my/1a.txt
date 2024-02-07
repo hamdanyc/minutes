@@ -1,0 +1,43 @@
+Nota Perbincangan: Mesyuarat Jabatan
+
+Tarikh: [Masukkan Tarikh]
+Masa: [Masukkan masa]
+Peserta: [Senarai Peserta]
+
+Objektif: Untuk membincangkan dan memutuskan item agenda berikut.
+
+Item Agenda:
+
+1. Pemilihan Presiden untuk tahun yang akan datang.
+2. Pelantikan Setiausaha Baru untuk Jabatan.
+3. Mengkaji prestasi dan pencapaian tahun sebelumnya.
+4. Cadangan untuk rancangan dan projek tahun yang akan datang.
+5. Sebarang perkara lain yang mungkin timbul semasa mesyuarat.
+
+Perbincangan:
+
+1. Pemilihan Presiden:
+* Pencalonan untuk jawatan Presiden dibuka, dan [memasukkan nama]] dicalonkan.
+* Selepas perbincangan, [memasukkan nama] dipilih sebagai presiden untuk tahun yang akan datang.
+2. Pelantikan Setiausaha:
+* Pencalonan untuk jawatan Setiausaha dibuka, dan [memasukkan nama]] dicalonkan.
+* Selepas perbincangan, [memasukkan nama] telah dilantik sebagai setiausaha jabatan.
+3. Mengkaji prestasi dan pencapaian tahun sebelumnya:
+* Prestasi dan pencapaian tahun sebelumnya telah dikaji semula, dan telah diperhatikan bahawa jabatan telah mencapai beberapa kejayaan, termasuk [Senarai Pencapaian].
+4. Cadangan untuk rancangan dan projek tahun yang akan datang:
+* Beberapa cadangan untuk rancangan dan projek tahun yang akan datang telah dikemukakan, termasuk [menyenaraikan cadangan].
+* Selepas perbincangan, cadangan itu telah diluluskan, dan jabatan akan berusaha untuk melaksanakannya pada tahun yang akan datang.
+5. Perkara lain:
+* [Masukkan apa -apa perkara lain yang dibincangkan atau diputuskan semasa mesyuarat].
+
+Keputusan:
+
+1. Pilihan raya [memasukkan nama] sebagai presiden untuk tahun yang akan datang telah disahkan.
+2. [Masukkan nama] telah dilantik sebagai setiausaha jabatan.
+3. Prestasi dan pencapaian tahun sebelumnya telah diakui dan dihargai.
+4. Cadangan untuk rancangan dan projek tahun yang akan datang telah diluluskan.
+5. [Masukkan sebarang keputusan lain yang dibuat semasa mesyuarat].
+
+Cadangan:
+
+1. Jabatan harus terus

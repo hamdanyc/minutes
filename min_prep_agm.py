@@ -1,4 +1,4 @@
-# min_prep_exco.py
+# min_prep_agm.py
 # input jk_siri_#.txt
 # output out/out.txt
 
@@ -10,7 +10,7 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('/home/abi/minutes/my.gz')
+spell.word_frequency.load_dictionary('my.gz')
 
 def correct_spelling(input_text):
     lines = input_text.split('\n')
@@ -61,11 +61,8 @@ def pr_dept(line, pat_dept, seen, outfile):
             break
 
 # Main code
-if len(sys.argv) < 2:
-    outfile.write("Please provide the input file as a command-line argument.")
-    sys.exit(1)
-
-input_file = sys.argv[1]
+seen_line = set()
+input_file = "out/agm23.txt"
 
 # Determine section for item
 pat_sect = {
@@ -77,35 +74,8 @@ pat_sect = {
     r'item-6': "Penutup"
 }
 
-# Determine section for department
-pat_dept = {
-    r'^fo\b|deluxe room|\b1\.[1-9]': "front office",
-    r'^hr\b|interview|temuduga|2\.[1-9]': "hr",
-    r'^f&b\s|revenue|RV|DMP|3\.[1-9]': "f&b",
-    r'kitchen|cef|4\.[1-9]': "kitchen",
-    r'steward|5\.[1-9]': "steward",
-    r'security|CCTV|6\.[1-9]': "security",
-    r'purchasing|7\.[1-9]': "purchasing",
-    r'maint|8\.[1-9]': "maintenance",
-    r'asset|9\.[1-9]': "asset",
-    r'^it\s|10\.[1-9]': "it",
-    r'housekeeping|freshner|11\.[1-9]': "housekeeping",
-    r'sales|profit|revenue|12\.[1-9]': "sales",
-    r'finance|invoice|invois|13\.[1-9]': "finance",
-    r'operation|14\.[1-9]': "operation",
-    r'pengurus': "pengurus"
-}
-
-# seen_departments = set()
-seen_sections = set()
-seen_line = set()
-
-try:
-    with open(input_file, 'r') as file:
-        lines = file.readlines()
-except FileNotFoundError:
-    outfile.write("File not found:", input_file)
-    sys.exit(1)
+with open(input_file, 'r') as file:
+    lines = file.readlines()
 
 # Output file name
 output_file = "out/out.txt"
@@ -126,13 +96,8 @@ with open(output_file, 'w') as outfile:
         # Perform spelling correction
         line = correct_spelling(line)
 
-        # Find and write section headers based on pat_sect
-        pr_sect(line, pat_sect, seen_sections, outfile)
-
-        # Find and write department headers based on pat_dept
-        # pr_dept(line, pat_dept, seen_sections, outfile)
-
         # Write the cleaned line to the output file if it's not empty
         if line != "" and line not in seen_line:
             outfile.write(line + "\n")
             seen_line.add(line)
+  

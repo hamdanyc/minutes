@@ -2,7 +2,7 @@ import replicate
 import os
 
 # Get the audio file path or URL
-path = os.path.join("/home/abi/minutes/audio", "Mesyuarat JMM 15-9-02.mp3")
+path = os.path.join("/workspace/minutes/audio", "Mesyuarat JMM 15-9-02.mp3")
 # audio = open(path,"rb")
 audio = "https://docs.google.com/uc?export=open&id=1MmoP-fXZadv5B-mVt3KB1TW5f9gqMpEh"
 # Set the API token
@@ -22,6 +22,6 @@ response = replicate.run(
 )
 
 # Print the transcription
-f = open("/home/abi/minutes/out/jmm-9-2.txt", "w")
+f = open("/workspace/minutes/out/jmm-9-2.txt", "w")
 f.write(response["transcription"])
 f.close()

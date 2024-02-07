@@ -6,7 +6,7 @@ system_prompt = "You are an English to Malay translator. Translate the to Malay.
 REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_TOKEN")
 
 # Get the input from the file
-with open("/home/abi/minutes/out/rmk12.txt", "r") as f:
+with open("out/rmk12.txt", "r") as f:
     input_text = f.read()
 
 # Run the Llama model

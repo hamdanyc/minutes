@@ -10,7 +10,7 @@ from spellchecker import SpellChecker
 spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('/home/abi/minutes/my.gz')
+spell.word_frequency.load_dictionary('my.gz')
 
 def correct_spelling(input_text):
     lines = input_text.split('\n')

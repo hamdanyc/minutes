@@ -24,7 +24,7 @@ def process_file(input_file, output_directory):
     current_tokens = 0
 
     for line in cleaned_lines:
-        match = re.search(r'(dept:|item:|speaker:)', line, flags=re.IGNORECASE)
+        match = re.search(r'(dept:|item:|speaker:)', line)
         if match:
             if current_group is not None:
                 current_group_count = group_counts[current_group]
@@ -59,5 +59,5 @@ output_directory = 'shred/'
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
 
-# Process the file
-process_file(input_file_path, output_directory)
+# Separate the text file into multiple output files
+split_file(input_file_path, output_path)
