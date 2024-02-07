@@ -31,7 +31,7 @@ def process_file(input_file, output_directory):
     current_tokens = 0
 
     for line in cleaned_lines:
-        if re.search(r'(dept:|item:|speaker:)', line):
+        if re.search(r'(dept:|item:|speaker:)', line, re.IGNORECASE):
             current_group = line.strip()
             current_group_count += 1
             current_tokens = 0
