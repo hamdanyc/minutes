@@ -17,7 +17,7 @@ input_dir = "res"
 input_files = sorted(os.listdir(input_dir), key=lambda x: int(''.join(filter(str.isdigit, x))))
 
 # init out/trans.txt
-with open("trans/trans.txt", "w"):
+with open("out/trans.txt", "w"):
     pass
 
 # Loop over the input files
