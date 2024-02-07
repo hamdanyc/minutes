@@ -59,5 +59,5 @@ output_directory = 'shred/'
 # Create the output directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)
 
-# Separate the text file into multiple output files
-split_file(input_file_path, output_path)
+# Process the file
+process_file(input_file_path, output_directory)
