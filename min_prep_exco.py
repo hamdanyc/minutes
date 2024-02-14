@@ -39,8 +39,8 @@ def remove_timestamp(line):
 # Function to find and outfile.write headers based on a pattern
 
 def pr_hd():
-   outfile.write("MESYUARAT JK RAFOC\n")
-   outfile.write("Siri: 3\t\tTahun:2023")
+   outfile.write("MESYUARAT JK Golf\n")
+   outfile.write("Siri: 1\t\tTahun:2024")
 
    outfile.write("\n")
 
@@ -81,7 +81,6 @@ with open(output_file, 'w') as outfile:
     # Write headers to the output file
     pr_hd()
     
-
     # Process each line in the input file
     for line in lines:
         line = line.strip()
