@@ -45,12 +45,6 @@ def process_file(input_file, output_directory):
                     write_to_file(output_file, line)
 
     # Write the remaining lines of the last group
-    if current_group is not None:
-        current_group_count = group_counts[current_group]
-        file_suffix = chr(97 + (current_tokens - 1) // 1000) if current_tokens <= 5000 else 'e'
-        output_file = os.path.join(output_directory, f'{current_group_count}{file_suffix}.txt')
-        for line in cleaned_lines:
-            write_to_file(output_file, line)
 
 # Declare the input file path and the output directory
 input_file_path = 'out/out.txt'
