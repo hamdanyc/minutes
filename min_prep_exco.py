@@ -53,7 +53,7 @@ def pr_sect(line, pat_sect, seen, outfile):
 
 # Main code
 seen_line = set()
-input_file = "out/exco_1_24.txt"
+input_file = "out/minit.txt"
 
 # Determine section for item
 pat_sect = {
