@@ -56,8 +56,10 @@ def process_file(input_file, output_directory):
 input_file_path = 'out/out.txt'
 output_directory = 'shred/'
 
-# Create the output directory if it doesn't exist
-os.makedirs(output_directory, exist_ok=True)
+# Remove existing files from the output directory
+for filename in os.listdir(output_directory):
+    file_path = os.path.join(output_directory, filename)
+    os.remove(file_path)
 
 # Process the file
 process_file(input_file_path, output_directory)
