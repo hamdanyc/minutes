@@ -17,8 +17,8 @@ def query(input_dir, output_dir):
             with open(os.path.join(input_dir, filename), "rb") as f:
                 data = f.read()
             response = requests.post(API_URL, headers=headers, data=data)
-            transcription = response.json()
-            with open(os.path.join(output_dir, f"vtt_{filename}.txt"), "w") as out_file:
+            transcription = response.json().get("text")
+            with open(os.path.join(output_dir, f"{filename}.txt"), "w") as out_file:
                 out_file.write(json.dumps(transcription))
 
 input_dir = "/home/abi/nfs/work_space/minutes/audio"
