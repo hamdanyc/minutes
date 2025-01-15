@@ -24,7 +24,7 @@ def process_file(input_file, output_directory):
     current_tokens = 0
 
     for line in cleaned_lines:
-        match = re.search(r'(dept:|item:|speaker:)', line)
+        match = re.search(r'(dept:|>>|speaker:)', line)
         if match:
             if current_group is not None:
                 current_group_count = group_counts[current_group]
