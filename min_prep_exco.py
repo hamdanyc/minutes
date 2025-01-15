@@ -3,15 +3,15 @@
 # output out/out.txt
 
 import re
-from spellchecker import SpellChecker
+# from spellchecker import SpellChecker
 
 # turn off loading a built language dictionary, case sensitive on (if desired)
-spell = SpellChecker(language=None, case_sensitive=False, distance=1)
+# spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('my.gz')
+# spell.word_frequency.load_dictionary('my.gz')
 
-def correct_spelling(input_text):
+""" def correct_spelling(input_text):
     lines = input_text.split('\n')
     corrected_lines = []
 
@@ -30,7 +30,7 @@ def correct_spelling(input_text):
         corrected_lines.append(corrected_line)
 
     corrected_text = '\n'.join(corrected_lines)
-    return corrected_text
+    return corrected_text """
 
 # Function to remove the timestamp from a line
 def remove_timestamp(line):
@@ -39,8 +39,8 @@ def remove_timestamp(line):
 # Function to find and outfile.write headers based on a pattern
 
 def pr_hd():
-   outfile.write("MESYUARAT JK Golf\n")
-   outfile.write("Siri: 1\t\tTahun:2024")
+   outfile.write("MESYUARAT JK MMMR\n")
+   outfile.write("Siri: 7\t\tTahun:2024")
 
    outfile.write("\n")
 
@@ -89,7 +89,7 @@ with open(output_file, 'w') as outfile:
         line = remove_timestamp(line)
 
         # Perform spelling correction
-        line = correct_spelling(line)
+        # line = correct_spelling(line)
 
         # Find and write section headers based on pat_sect
         pr_sect(line, pat_sect, seen_sections, outfile)

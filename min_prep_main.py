@@ -3,17 +3,17 @@
 # output: out/out.txt
 
 import re
-from spellchecker import SpellChecker
+# from spellchecker import SpellChecker
 
 # turn off loading a built language dictionary, case sensitive on (if desired)
-spell = SpellChecker(language=None, case_sensitive=False, distance=1)
+# spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
 # if you have a dictionary...
-spell.word_frequency.load_dictionary('my.gz')
+# spell.word_frequency.load_dictionary('my.gz')
 
 input_file = "out/minit.txt"
 
-def correct_spelling(input_text):
+""" def correct_spelling(input_text):
     lines = input_text.split('\n')
     corrected_lines = []
 
@@ -32,7 +32,7 @@ def correct_spelling(input_text):
         corrected_lines.append(corrected_line)
 
     corrected_text = '\n'.join(corrected_lines)
-    return corrected_text
+    return corrected_text """
 
 # Function to remove the timestamp from a line
 def remove_timestamp(line):
@@ -216,7 +216,7 @@ with open(output_file, 'w') as outfile:
         line = remove_timestamp(line)
 
         # Perform spelling correction
-        line = correct_spelling(line)
+        # line = correct_spelling(line)
 
         # Replace unknown words in the line
         # line = rep_with(line)

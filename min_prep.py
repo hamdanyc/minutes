@@ -1,33 +1,33 @@
 import sys
 import re
-from spellchecker import SpellChecker
+# from spellchecker import SpellChecker
 
-# turn off loading a built language dictionary, case sensitive on (if desired)
-spell = SpellChecker(language=None, case_sensitive=False, distance=1)
+# # turn off loading a built language dictionary, case sensitive on (if desired)
+# spell = SpellChecker(language=None, case_sensitive=False, distance=1)
 
-# if you have a dictionary...
-spell.word_frequency.load_dictionary('my.gz')
+# # if you have a dictionary...
+# spell.word_frequency.load_dictionary('my.gz')
 
-def correct_spelling(input_text):
-    lines = input_text.split('\n')
-    corrected_lines = []
+# def correct_spelling(input_text):
+#     lines = input_text.split('\n')
+#     corrected_lines = []
 
-    for line in lines:
-        words = line.split()
-        corrected_words = []
+#     for line in lines:
+#         words = line.split()
+#         corrected_words = []
 
-        for word in words:
-           corrected_word = spell.correction(word)
-           if corrected_word is not None:
-              corrected_words.append(corrected_word)
-           else:
-              corrected_words.append(word)
+#         for word in words:
+#            corrected_word = spell.correction(word)
+#            if corrected_word is not None:
+#               corrected_words.append(corrected_word)
+#            else:
+#               corrected_words.append(word)
 
-        corrected_line = ' '.join(corrected_words)
-        corrected_lines.append(corrected_line)
+#         corrected_line = ' '.join(corrected_words)
+#         corrected_lines.append(corrected_line)
 
-    corrected_text = '\n'.join(corrected_lines)
-    return corrected_text
+#     corrected_text = '\n'.join(corrected_lines)
+#     return corrected_text
 
 # Function to remove the timestamp from a line
 def remove_timestamp(line):
