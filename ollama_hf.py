@@ -28,6 +28,9 @@ NOTE:"""
 
 prompt = ChatPromptTemplate.from_template(template)
 
+f = open("/home/abi/nfs/work_space/minutes/shred/2a.txt", "r")
+input = f.read()
+
 # Create the RAG chain using LCEL with prompt printing and streaming output
 rag_chain = (
     {"input": RunnablePassthrough()}
@@ -35,22 +38,7 @@ rag_chain = (
     | llm
 )
 
-# Get the input files from the input-dir
-input_files = os.listdir("shred")
-
-# Remove existing files from the output directory
-output_directory = "res"
-for filename in os.listdir(output_directory):
-    file_path = os.path.join(output_directory, filename)
-    os.remove(file_path)
-
-# Loop over the input files
-for input_file in input_files:
-    # Get the input text from the file
-    with open(f"shred/{input_file}", "r") as f:
-        input = f.read()
-
-    # Save the response text to output_directory
-    with open(f"res/{input_file}", "w", encoding="utf-8") as file:
-        for chunk in rag_chain.stream(input):
-            file.write(chunk)
+with open("/home/abi/nfs/work_space/minutes/out/ollama.txt", "w", encoding="utf-8") as file:
+    # Run the Llama model
+    for chunk in rag_chain.stream(input):
+        file.write(chunk)
