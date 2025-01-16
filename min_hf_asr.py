@@ -1,5 +1,6 @@
 import requests
 import os
+import base64
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,9 +16,10 @@ headers = {"Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}",
 def query(filename):
     with open(filename, "rb") as f:
         data = f.read()
-    response = requests.post(API_URL, headers=headers, data=data, params={"return_timestamp": True})
-    text = response.json().get("text")
-    return text
+    encoded_data = base64.b64encode(data).decode('utf-8')
+    payload = {"input": encoded_data, "parameters": {"return_timestamp": True}}
+    response = requests.post(API_URL, headers=headers, json=payload)
+    return response.json()
 
 output = query("/home/abi/nfs/work_space/minutes/audio/mmmr-post-2-01.mp3")
 print(output)
