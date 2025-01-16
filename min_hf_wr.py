@@ -35,11 +35,14 @@ rag_chain = (
     | llm
 )
 
+# file path
+input_directory = "/home/abi/nfs/work_space/minutes/script"
+output_directory = "/home/abi/nfs/work_space/minutes/res"
+
 # Get the input files from the input-dir
-input_files = os.listdir("shred")
+input_files = os.listdir(input_directory)
 
 # Remove existing files from the output directory
-output_directory = "res"
 for filename in os.listdir(output_directory):
     file_path = os.path.join(output_directory, filename)
     os.remove(file_path)
@@ -47,10 +50,10 @@ for filename in os.listdir(output_directory):
 # Loop over the input files
 for input_file in input_files:
     # Get the input text from the file
-    with open(f"shred/{input_file}", "r") as f:
+    with open(f"{input_directory}/{input_file}", "r") as f:
         input = f.read()
 
     # Save the response text to output_directory
-    with open(f"res/{input_file}", "w", encoding="utf-8") as file:
+    with open(f"{output_directory}/{input_file}", "w", encoding="utf-8") as file:
         for chunk in rag_chain.stream(input):
             file.write(chunk)
