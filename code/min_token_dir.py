@@ -1,6 +1,6 @@
 import os
 
-input_directory = '/home/app/script'
+input_directory = 'script/'
 total_words = 0
 
 # Iterate over files in the input directory

@@ -4,6 +4,7 @@ from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
+
 # Read authorization token from environment variable
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
@@ -40,6 +41,6 @@ def transcribe_audio(input_dir, output_dir):
                 print(f"Error processing file {filename}: {str(e)}")
 
 if __name__ == "__main__":
-    input_dir = "/home/app/audio"
-    output_dir = "/home/app/script"
+    input_dir = "audio/"
+    output_dir = "script/"
     transcribe_audio(input_dir, output_dir)

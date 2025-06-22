@@ -29,9 +29,7 @@ def process_file(input_file_path):
         messages = [
             {
                 "role": "system",
-                "content": "You are a secretary to a departmental meeting. \
-                    Your task is to write a discussion notes that highlighting important discussions, facts and decision. \
-                    Tabulate facts and figure where possible.",
+                "content": "You are a language assistant. Translate the text to Malay",
             },
             {
                 "role": "user",
@@ -42,7 +40,7 @@ def process_file(input_file_path):
         completion = client.chat.completions.create(
             model="llama3-70b-8192", 
             messages=messages, 
-            max_tokens=500,
+            max_tokens=750,
         )
 
         output = completion.choices[0].message.content
@@ -51,8 +49,8 @@ def process_file(input_file_path):
         return None
 
 def main():
-    input_folder = 'out/'
-    output_folder = 'res/'
+    input_folder = 'res/'
+    output_folder = 'my/'
 
     # Remove existing files from the output directory
     for filename in os.listdir(output_folder):

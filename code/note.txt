@@ -1,0 +1,8 @@
+process:
+
+1. Run min_gq_asr_api.py | Transcribe meeting audio; each audio file not more than 10 minutes
+2. Run min_ckspell.py | Clean up spelling input: script/ output: out/
+3. Compare each script/ with out/
+4. Run min_gq_llama_wr.py | Discussion note
+5. Run min_gq_llama_my.py | Translate to Malay
+6. Consolidate notes in 3. with web-ui 
